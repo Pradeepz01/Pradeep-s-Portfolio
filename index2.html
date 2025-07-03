@@ -1,0 +1,333 @@
+<!-- WELCOME TO PRADEEP'S ECE PORTFOLIO WITH AN ELECTRONIC BACKGROUND!! -->
+
+<script type="text/javascript">
+        var gk_isXlsx = false;
+        var gk_xlsxFileLookup = {};
+        var gk_fileData = {};
+        function filledCell(cell) {
+          return cell !== '' && cell != null;
+        }
+        function loadFileData(filename) {
+        if (gk_isXlsx && gk_xlsxFileLookup[filename]) {
+            try {
+                var workbook = XLSX.read(gk_fileData[filename], { type: 'base64' });
+                var firstSheetName = workbook.SheetNames[0];
+                var worksheet = workbook.Sheets[firstSheetName];
+                var jsonData = XLSX.utils.sheet_to_json(worksheet, { header: 1, blankrows: false, defval: '' });
+                var filteredData = jsonData.filter(row => row.some(filledCell));
+                var headerRowIndex = filteredData.findIndex((row, index) =>
+                  row.filter(filledCell).length >= filteredData[index + 1]?.filter(filledCell).length
+                );
+                if (headerRowIndex === -1 || headerRowIndex > 25) {
+                  headerRowIndex = 0;
+                }
+                var csv = XLSX.utils.aoa_to_sheet(filteredData.slice(headerRowIndex));
+                csv = XLSX.utils.sheet_to_csv(csv, { header: 1 });
+                return csv;
+            } catch (e) {
+                console.error(e);
+                return "";
+            }
+        }
+        return gk_fileData[filename] || "";
+        }
+</script>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pradeep's Portfolio</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+  <style>
+    body {
+      font-family: 'Roboto Mono', monospace;
+      background: url('https://www.transparenttextures.com/patterns/circuit-board.png') repeat, linear-gradient(to bottom, #1a202c, #2b6cb0);
+      color: #e2e8f0;
+    }
+    .animate-pulse {
+      animation: pulse 1.5s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.5; }
+    }
+    .hover-scale {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .hover-scale:hover {
+      transform: scale(1.05);
+      box-shadow: 0 10px 15px rgba(0, 0, 0, 0.3);
+    }
+    .navbar-scrolled {
+      background-color: rgba(26, 32, 44, 0.95);
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    }
+    .circuit-border {
+      border: 2px solid #38a169;
+      border-image: linear-gradient(to right, #38a169, #2b6cb0) 1;
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav id="navbar" class="fixed w-full z-10 bg-transparent transition-all duration-300">
+    <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+      <a href="#home" class="text-3xl font-bold text-lime-500">Pradeep S</a>
+      <div class="hidden md:flex space-x-6">
+        <a href="#home" class="text-gray-200 hover:text-lime-500">Home</a>
+        <a href="#about" class="text-gray-200 hover:text-lime-500">About</a>
+        <a href="#skills" class="text-gray-200 hover:text-lime-500">Skills</a>
+        <a href="#timeline" class="text-gray-200 hover:text-lime-500">Timeline</a>
+        <a href="#projects" class="text-gray-200 hover:text-lime-500">Projects</a>
+        <a href="#internships" class="text-gray-200 hover:text-lime-500">Internships</a>
+        <a href="#work" class="text-gray-200 hover:text-lime-500">Work</a>
+        <a href="#certifications" class="text-gray-200 hover:text-lime-500">Certifications</a>
+        <a href="#contact" class="text-gray-200 hover:text-lime-500">Contact</a>
+      </div>
+      <div class="md:hidden">
+        <button id="menu-btn" class="text-gray-200 focus:outline-none">
+          <i class="fas fa-bars fa-lg"></i>
+        </button>
+      </div>
+    </div>
+    <div id="mobile-menu" class="hidden md:hidden bg-gray-800 shadow-md">
+      <a href="#home" class="block px-4 py-2 text-gray-200 hover:bg-lime-500 hover:text-gray-900">Home</a>
+      <a href="#about" class="block px-4 py-2 text-gray-200 hover:bg-lime-500 hover:text-gray-900">About</a>
+      <a href="#skills" class="block px-4 py-2 text-gray-200 hover:bg-lime-500 hover:text-gray-900">Skills</a>
+      <a href="#timeline" class="block px-4 py-2 text-gray-200 hover:bg-lime-500 hover:text-gray-900">Timeline</a>
+      <a href="#projects" class="block px-4 py-2 text-gray-200 hover:bg-lime-500 hover:text-gray-900">Projects</a>
+      <a href="#internships" class="block px-4 py-2 text-gray-200 hover:bg-lime-500 hover:text-gray-900">Internships</a>
+      <a href="#work" class="block px-4 py-2 text-gray-200 hover:bg-lime-500 hover:text-gray-900">Work</a>
+      <a href="#certifications" class="block px-4 py-2 text-gray-200 hover:bg-lime-500 hover:text-gray-900">Certifications</a>
+      <a href="#contact" class="block px-4 py-2 text-gray-200 hover:bg-lime-500 hover:text-gray-900">Contact</a>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section id="home" class="min-h-screen flex items-center justify-center bg-gradient-to-r from-gray-900 to-blue-600 text-white relative">
+    <div class="container mx-auto px-4 text-center">
+      <h1 class="text-5xl md:text-7xl font-bold mb-4">Hey, I'm Pradeep!</h1>
+      <p class="text-xl md:text-3xl mb-6">Turning Signals into Solutions, Ideas into Innovation</p>
+      <a href="#contact" class="bg-lime-500 text-gray-900 px-8 py-3 rounded-full font-semibold hover:bg-lime-400 animate-pulse">Let's Connect!</a>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" class="py-20 bg-gray-800 circuit-border">
+    <div class="container mx-auto px-4">
+      <h2 class="text-4xl font-bold text-center mb-10 text-lime-500">About Me</h2>
+      <div class="flex flex-col md:flex-row items-center">
+        <div class="md:w-1/2 mb-6 md:mb-0">
+          <img src="portfolio_pradeep.jpg" alt="Profile" class="rounded-full mx-auto w-64 h-64 object-cover hover-scale">
+        </div>
+        <div class="md:w-1/2 md:pl-10">
+          <p class="text-gray-200 mb-4">Hi, I'm an Electronics and Communication Engineer with a strong interest in embedded systems and IoT. I specialize in PCB design and developing smart, real-world applications using NodeMCU. My work blends creativity with technical precision to build efficient, reliable, and connected solutions. With a solid grounding in ECE and a passion for hands-on innovation, I'm driven to create technology that makes a meaningful impact.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills Section -->
+  <section id="skills" class="py-20 bg-gray-900 circuit-border">
+    <div class="container mx-auto px-4">
+      <h2 class="text-4xl font-bold text-center mb-10 text-lime-500">My Tech Toolkit</h2>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+        <div class="bg-gray-800 p-6 rounded-lg shadow-md text-center hover-scale circuit-border">
+          <i class="fas fa-code text-4xl text-blue-500 mb-4"></i>
+          <h3 class="text-lg font-semibold text-gray-200">Marlin</h3>
+          <!-- <p class="text-gray-400 text-sm">Programming microcontrollers with precision.</p> -->
+        </div>
+        <div class="bg-gray-800 p-6 rounded-lg shadow-md text-center hover-scale circuit-border">
+          <i class="fas fa-microchip text-4xl text-lime-500 mb-4"></i>
+          <h3 class="text-lg font-semibold text-gray-200">PCB Design</h3>
+        </div>
+        <div class="bg-gray-800 p-6 rounded-lg shadow-md text-center hover-scale circuit-border">
+          <i class="fas fa-cogs text-4xl text-orange-500 mb-4"></i>
+          <h3 class="text-lg font-semibold text-gray-200">Ultimaker Cura</h3>
+        </div>
+        <div class="bg-gray-800 p-6 rounded-lg shadow-md text-center hover-scale circuit-border">
+          <i class="fas fa-wifi text-4xl text-teal-500 mb-4"></i>
+          <h3 class="text-lg font-semibold text-gray-200">IOT systems</h3>
+        </div>
+        <div class="bg-gray-800 p-6 rounded-lg shadow-md text-center hover-scale circuit-border">
+          <i class="fas fa-bolt text-4xl text-yellow-500 mb-4"></i>
+          <h3 class="text-lg font-semibold text-gray-200">Power Distribution</h3>
+        </div>
+        <div class="bg-gray-800 p-6 rounded-lg shadow-md text-center hover-scale circuit-border">
+          <i class="fas fa-laptop-code text-purple-500 text-4xl mb-2"></i>
+          <h3 class="text-lg font-semibold text-gray-200">ESP Programming</h3>
+        </div>
+        <div class="bg-gray-800 p-6 rounded-lg shadow-md text-center hover-scale circuit-border">
+          <i class="fas fa-chart-line text-red-500 text-4xl mb-2"></i>
+          <h3 class="text-lg font-semibold text-gray-200">Circuit Analysis</h3>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Timeline Section -->
+  <section id="timeline" class="py-20 bg-gray-800 circuit-border">
+    <div class="container mx-auto px-4">
+      <h2 class="text-4xl font-bold text-center mb-10 text-lime-500">Timeline</h2>
+      <div class="relative">
+        <div class="absolute w-1 bg-lime-500 h-full left-1/2 transform -translate-x-1/2"></div>
+        <div class="flex flex-col items-center space-y-12">
+          <div class="flex w-full max-w-4xl">
+            <div class="w-1/2 pr-8 text-right">
+              <div class="bg-gray-900 p-6 rounded-lg shadow-md hover-scale circuit-border">
+                <h3 class="text-lg font-semibold text-gray-200">March 2023</h3>
+                <p class="text-gray-400">Completed schooling at SPK Gems Schools with an aggregate of 96.5%.</p>
+              </div>
+            </div>
+            <div class="w-4 h-4 bg-lime-500 rounded-full absolute left-1/2 -ml-2 flex items-center justify-center">
+              <i class="fas fa-graduation-cap text-gray-900 text-xs"></i>
+            </div>
+            <div class="w-1/2 pl-8"></div>
+          </div>
+          <div class="flex w-full max-w-4xl">
+            <div class="w-1/2 pr-8"></div>
+            <div class="w-4 h-4 bg-lime-500 rounded-full absolute left-1/2 -ml-2 flex items-center justify-center">
+              <i class="fas fa-university text-gray-900 text-xs"></i>
+            </div>
+            <div class="w-1/2 pl-8">
+              <div class="bg-gray-900 p-6 rounded-lg shadow-md hover-scale circuit-border">
+                <h3 class="text-lg font-semibold text-gray-200">August 2023</h3>
+                <p class="text-gray-400">Started BE in Electronics & Communication Engineering at College of Engineering, Guindy.</p>
+              </div>
+            </div>
+          </div>
+          <div class="flex w-full max-w-4xl">
+            <div class="w-1/2 pr-8 text-right">
+              <div class="bg-gray-900 p-6 rounded-lg shadow-md hover-scale circuit-border">
+                <h3 class="text-lg font-semibold text-gray-200">June 2025</h3>
+                <p class="text-gray-400">Internship in Centre for Wireless System Design.</p>
+              </div>
+            </div>
+            <div class="w-4 h-4 bg-lime-500 rounded-full absolute left-1/2 -ml-2 flex items-center justify-center">
+              <i class="fas fa-briefcase text-gray-900 text-xs"></i>
+            </div>
+            <div class="w-1/2 pl-8"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects Section -->
+  <section id="projects" class="py-20 bg-gray-900 circuit-border">
+    <div class="container mx-auto px-4">
+      <h2 class="text-4xl font-bold text-center mb-10 text-lime-500">Projects</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="bg-gray-800 rounded-lg shadow-md overflow-hidden hover-scale circuit-border">
+          <img src="3dprinter.jpg" alt="Project 1" class="w-full h-48 object-cover">
+          <div class="p-6">
+            <h3 class="text-xl font-semibold text-gray-200 mb-2">Hybrid SLA-FDM 3D Printer Development</h3>
+            <p class="text-gray-400 mb-4">Developed an FDM-style 3D printer adapted for resin extrusion using Marlin firmware on Arduino Mega 2560 with RAMPS 1.4. Customized G-code in Cura to control a pneumatic resin extruder and fine-tuned electronics for precise motion and power efficiency.</p>
+            <a href="#" class="text-lime-500 hover:underline">View Project</a>
+          </div>
+        </div>
+        <div class="bg-gray-800 rounded-lg shadow-md overflow-hidden hover-scale circuit-border">
+          <img src="python.jpg" alt="Project 2" class="w-full h-48 object-cover">
+          <div class="p-6">
+            <h3 class="text-xl font-semibold text-gray-200 mb-2">Image-Based Data Encryption</h3>
+            <p class="text-gray-400 mb-4">Built a Python program to securely encrypt and embed data within images using steganography techniques, combining logic design with image processing.</p>
+            <a href="#" class="text-lime-500 hover:underline">View Project</a>
+          </div>
+        </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Internships Section -->
+  <section id="internships" class="py-20 bg-gray-800 circuit-border">
+    <div class="container mx-auto px-4">
+      <h2 class="text-4xl font-bold text-center mb-10 text-lime-500">Internships</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="bg-gray-800 rounded-lg shadow-md overflow-hidden hover-scale circuit-border">
+          <img src="transceiver.jpg" alt="Internship 1" class="w-full h-48 object-cover">
+          <div class="p-6">
+            <h3 class="text-xl font-semibold text-gray-200 mb-2">Wireless Transceiver Design Internship</h3>
+            <p class="text-gray-400 mb-4">Completed a hands-on internship on wireless transceiver systems, organized by the Center for Wireless System Design, Anna University.</p>
+            <a href="#" class="text-lime-500 hover:underline">Learn More</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Certifications Section -->
+  <section id="certifications" class="py-20 bg-gray-800 circuit-border">
+    <div class="container mx-auto px-4">
+      <h2 class="text-4xl font-bold text-center mb-10 text-lime-500">Certifications</h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="bg-gray-900 rounded-lg shadow-md p-6 hover-scale circuit-border">
+          <i class="fas fa-certificate text-3xl text-blue-500 mb-4"></i>
+          <h3 class="text-lg font-semibold text-gray-200 mb-2">Introduction to Internet of Things</h3>
+          <p class="text-gray-400 text-sm mb-2">NPTEL</p>
+          <p class="text-gray-400 mb-4">Mastered microcontroller programming and RTOS concepts.</p>
+          <!-- <a href="#" class="text-lime-500 hover:underline text-sm">View Badge</a> -->
+        </div>
+        <div class="bg-gray-900 rounded-lg shadow-md p-6 hover-scale circuit-border">
+          <i class="fas fa-certificate text-3xl text-yellow-500 mb-4"></i>
+          <h3 class="text-lg font-semibold text-gray-200 mb-2">Introduction to Linear Algebra with Matlab</h3>
+          <p class="text-gray-400 text-sm mb-2">Matlab Training Services</p>
+          <p class="text-gray-400 mb-4">Explored fundamental linear algebra concepts while applying them through MATLAB for practical computation and visualization..</p>
+          <!-- <a href="#" class="text-lime-500 hover:underline text-sm">View Badge</a> -->
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="py-20 bg-gray-900 circuit-border">
+    <div class="container mx-auto px-4">
+      <h2 class="text-4xl font-bold text-center mb-10 text-lime-500">Connect with Me</h2>
+      <div class="max-w-lg mx-auto text-center">
+        <div class="flex items-center justify-center mb-4">
+          <i class="fas fa-envelope text-lime-500 text-2xl mr-4"></i>
+          <a href="mailto: pradeepsaravana01@gmail.com" class="text-gray-200 hover:text-lime-500">Email</a>
+        </div>
+        <div class="flex items-center justify-center mb-4">
+          <i class="fab fa-linkedin text-lime-500 text-2xl mr-4"></i>
+          <a href="https://www.linkedin.com/in/pradeep-s06/" class="text-gray-200 hover:text-lime-500">LinkedIn</a>
+        </div>
+        <div class="flex items-center justify-center mb-4">
+          <i class="fab fa-github text-lime-500 text-2xl mr-4"></i>
+          <a href="https://github.com/Pradeepz01" class="text-gray-200 hover:text-lime-500">GitHub</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-gray-800 text-gray-200 py-6 circuit-border">
+    <div class="container mx-auto px-4 text-center">
+      <p>© 2025 Pradeep S. All rights reserved</p>
+    </div>
+  </footer>
+
+  <!-- JavaScript for Navbar -->
+  <script>
+    const menuBtn = document.getElementById('menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const navbar = document.getElementById('navbar');
+
+    menuBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 50) {
+        navbar.classList.add('navbar-scrolled');
+      } else {
+        navbar.classList.remove('navbar-scrolled');
+      }
+    });
+  </script>
+</body>
+</html>
