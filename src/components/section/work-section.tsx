@@ -75,6 +75,7 @@ export default function WorkSection() {
                 </span>
               </div>
             </div>
+          </AccordionTrigger>
           <AccordionContent className="p-0 ml-13 text-xs sm:text-sm text-muted-foreground flex flex-col gap-2">
             <p>{work.description}</p>
             {work.href && (
