@@ -7,6 +7,9 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { FlickeringGrid } from "@/components/magicui/flickering-grid";
+import { Structure3D } from "@/components/magicui/structure-3d";
+import { Airplane3D } from "@/components/magicui/airplane-3d";
+import { MouseSpotlight } from "@/components/magicui/mouse-spotlight";
 
 const geist = Geist({
   subsets: ["latin"],
@@ -65,13 +68,20 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body
         className={cn(
-          "min-h-screen bg-background font-sans antialiased relative",
+          "min-h-screen bg-background font-sans antialiased relative selection:bg-sky-500/20 selection:text-sky-400",
           geist.variable,
           geistMono.variable
         )}
       >
         <ThemeProvider attribute="class" defaultTheme="dark">
           <TooltipProvider delayDuration={0}>
+            {/* 3D Geometric Structured Background (Black/White/Red) */}
+            <Structure3D />
+
+            {/* 3D Wireframe Airplane Cursor Follower */}
+            <Airplane3D />
+
+            {/* Subtle Top Flickering Grid */}
             <div className="absolute inset-0 top-0 left-0 right-0 h-[300px] overflow-hidden z-0 pointer-events-none">
               <FlickeringGrid
                 className="h-full w-full opacity-40 dark:opacity-30"
@@ -83,7 +93,9 @@ export default function RootLayout({
                 }}
               />
             </div>
-            <div className="relative z-10 max-w-4xl mx-auto py-12 pb-28 sm:py-20 px-4 sm:px-6 lg:px-8">
+
+            {/* Main Content */}
+            <div className="relative z-10">
               {children}
             </div>
             <Navbar />

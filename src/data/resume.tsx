@@ -72,7 +72,7 @@ export const DATA = {
       },
       LeetCode: {
         name: "LeetCode",
-        url: "https://leetcode.com",
+        url: "https://leetcode.com/u/saltlee/",
         icon: Icons.leetcode,
         navbar: true,
       },
@@ -96,7 +96,7 @@ export const DATA = {
       start: "Dec 2025",
       end: "Jan 2026",
       description:
-        "Developed Embedded C applications on PIC16F877A using timers, interrupts, bit manipulation, peripheral interfacing, and modular driver-based programming. Built a Microwave Oven Controller in PICSimLab featuring FSM-based control, keypad/LCD interfacing, multiple cooking modes, and timer management.",
+        "Developed production-quality Embedded C firmware on the 8-bit PIC16F877A microcontroller utilizing low-level bit manipulation, hardware timer configuration, interrupt-driven service routines (ISRs), and modular peripheral driver abstraction.\n\nEngineered a complete Microwave Oven Controller system simulation in PICSimLab featuring a robust Finite State Machine (FSM) architecture controlling operational states (Micro, Grill, Convection, Start/Pause), Matrix Keypad polling, character LCD menu interfacing, and safety timer management.",
     },
     {
       company: "Wireless Transceiver Design Intern — CWISD, Anna University",
@@ -108,7 +108,7 @@ export const DATA = {
       start: "Jun 2025",
       end: "Jun 2025",
       description:
-        "Implemented ASK, PSK, QAM, and OFDM modulation using GNU Radio with signal generation, channel simulation, and performance evaluation. Designed digital filters and signal flow graphs while gaining exposure to baseband processing and wireless transceiver architecture.",
+        "Implemented digital modulation and demodulation pipelines including ASK, PSK, QAM, and OFDM using GNU Radio with realistic signal generation, channel distortion modeling (AWGN and multipath fading), and constellation/BER performance evaluation.\n\nDesigned digital filter blocks (FIR/IIR) and signal flow graphs while gaining deep hands-on exposure to baseband signal processing algorithms, software-defined radio (SDR) paradigms, and modern wireless transceiver RF front-end architectures.",
     },
   ],
   education: [
@@ -117,7 +117,7 @@ export const DATA = {
       href: "https://ceg.annauniv.edu",
       degree:
         "B.E. in Electronics and Communication Engineering (Major) & Minor in Computer Science (Cybersecurity) | CGPA: 7.99",
-      logoUrl: "/anna_univ.png",
+      logoUrl: "/ceg_logo.png",
       start: "2023",
       end: "2027",
     },
@@ -142,10 +142,11 @@ export const DATA = {
         "Embedded C",
         "ARM Cortex-M4",
         "STM32F446RE",
-        "UART",
+        "Custom Bootloader",
+        "OTA",
+        "UART Protocol",
         "Flash Memory",
-        "Bootloader",
-        "OTA Firmware",
+        "FSM",
       ],
       links: [
         {
@@ -158,15 +159,14 @@ export const DATA = {
       video: "",
     },
     {
-      title: "True Random Number Generator (TRNG) – Tiny Tapeout (Sky130)",
+      title: "Ring-Oscillator TRNG ASIC (Sky130)",
       href: "https://github.com/Pradeepz01/TRNG",
-      dates: "May 2026 – Present",
+      dates: "May 2026",
       active: true,
       description:
-        "Designed a Verilog-based hardware TRNG using ring-oscillator jitter as an entropy source, with sampling and entropy-conditioning logic. Implementing entropy conditioning through sampling, Von Neumann correction, health testing, and output buffering, targeting Tiny Tapeout ASIC fabrication.",
+        "Designed a True Random Number Generator leveraging jitter and thermal noise in free-running ring oscillators for cryptographic applications. Modeled in Verilog and synthesized using the open-source Sky130 PDK on Tiny Tapeout.",
       technologies: [
         "Verilog",
-        "RTL Design",
         "Tiny Tapeout",
         "Sky130",
         "ASIC",
@@ -243,12 +243,18 @@ export const DATA = {
   hackathons: [
     {
       title: "Mastering Microcontroller and Embedded Driver Development",
-      dates: "FastBit Academy",
+      dates: "FastBit Academy (Udemy)",
       location: "ARM Cortex-M4 Bare-Metal Development",
       description:
         "In-depth bare-metal driver development from scratch for ARM Cortex-M4 (STM32F4) peripherals: GPIO, I2C, SPI, USART, NVIC, RCC, timers, and interrupt handling.",
-      image: "",
-      links: [],
+      image: "/udemy_logo.svg",
+      links: [
+        {
+          title: "View Certificate",
+          icon: <Icons.globe className="h-4 w-4" />,
+          href: "https://ude.my/UC-95a53d5c-2075-4d35-8c38-74af728c8908",
+        },
+      ],
     },
     {
       title: "Fundamentals of Verilog HDL",
@@ -256,21 +262,27 @@ export const DATA = {
       location: "Digital Design & RTL Modeling",
       description:
         "Comprehensive training on Verilog hardware description language, behavioral and structural modelling, testbench architecture, simulation, and synthesis.",
-      image: "",
-      links: [],
-    },
-    {
-      title: "Letter of Appreciation – Hybrid 3D Printer Contribution",
-      dates: "CTF (Centre for Technology Development and Transfer)",
-      location: "College of Engineering, Guindy",
-      description:
-        "Awarded official Letter of Appreciation for leading electronics integration, Marlin firmware customization, UV curing synchronization, and motion control for the hybrid SLA + FDM printer.",
-      image: "",
+      image: "/udemy_logo.svg",
       links: [
         {
           title: "View Certificate",
           icon: <Icons.globe className="h-4 w-4" />,
-          href: "/certifications/Hybrid3DPrinter_P&R_Pradeep_S_LOA.pdf",
+          href: "https://www.udemy.com/certificate/UC-646a1979-6c85-492b-a107-de5b13110bc4/",
+        },
+      ],
+    },
+    {
+      title: "Letter of Appreciation – Hybrid 3D Printer Contribution",
+      dates: "CEG Tech Forum (CTF)",
+      location: "College of Engineering, Guindy",
+      description:
+        "Awarded official Letter of Appreciation from CEG Tech Forum (CTF) for leading electronics integration, Marlin firmware customization, UV curing synchronization, and motion control for the hybrid SLA + FDM printer.",
+      image: "/ctf_logo.png",
+      links: [
+        {
+          title: "View Certificate",
+          icon: <Icons.globe className="h-4 w-4" />,
+          href: "https://github.com/Pradeepz01/Certifications/blob/main/Hybrid3DPrinter_P%26R_Pradeep_S_LOA.pdf",
         },
       ],
     },
@@ -280,12 +292,12 @@ export const DATA = {
       location: "IIT Kharagpur / SWAYAM",
       description:
         "Certified in IoT fundamentals, embedded sensor networks, IoT communication protocols (MQTT, CoAP), wireless network topologies, and embedded system integration.",
-      image: "",
+      image: "/nptel_logo.svg",
       links: [
         {
           title: "View Certificate",
           icon: <Icons.globe className="h-4 w-4" />,
-          href: "/certifications/Introduction To Internet Of Things.pdf",
+          href: "https://github.com/Pradeepz01/Certifications/blob/main/Introduction%20To%20Internet%20Of%20Things.pdf",
         },
       ],
     },
@@ -295,7 +307,7 @@ export const DATA = {
       location: "Algorithms & Data Structures",
       description:
         "Certified in core problem solving, algorithmic thinking, data structures, and Python implementations.",
-      image: "/python.jpg",
+      image: "/hackerrank_logo.png",
       links: [
         {
           title: "GitHub Profile",

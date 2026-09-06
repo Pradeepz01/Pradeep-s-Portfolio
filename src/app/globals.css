@@ -42,6 +42,24 @@
   --color-sidebar-ring: var(--sidebar-ring);
 }
 
+@keyframes meteor {
+  0% {
+    transform: rotate(215deg) translateX(0);
+    opacity: 1;
+  }
+  70% {
+    opacity: 1;
+  }
+  100% {
+    transform: rotate(215deg) translateX(-600px);
+    opacity: 0;
+  }
+}
+
+.animate-meteor {
+  animation: meteor 5s linear infinite;
+}
+
 :root {
   --radius: 0.625rem;
   --background: oklch(1 0 0);

@@ -36,12 +36,12 @@ function LogoImage({ src, alt }: { src: string; alt: string }) {
 
 export default function WorkSection() {
   return (
-    <Accordion type="single" collapsible className="w-full grid gap-6">
+    <Accordion type="single" collapsible className="w-full flex flex-col gap-3.5">
       {DATA.work.map((work) => (
         <AccordionItem
           key={work.company}
           value={work.company}
-          className="w-full border-b-0 grid gap-2"
+          className="w-full border border-border/70 bg-card/90 dark:bg-zinc-900/90 hover:border-primary/40 transition-all rounded-2xl p-4 shadow-xs"
         >
           <AccordionTrigger className="hover:no-underline p-0 cursor-pointer transition-colors rounded-none group [&>svg]:hidden">
             <div className="flex items-center gap-x-3 justify-between w-full text-left">
@@ -80,8 +80,10 @@ export default function WorkSection() {
               </div>
             </div>
           </AccordionTrigger>
-          <AccordionContent className="p-0 ml-13 text-xs sm:text-sm text-muted-foreground flex flex-col gap-2">
-            <p>{work.description}</p>
+          <AccordionContent className="p-0 ml-13 text-xs sm:text-sm text-muted-foreground flex flex-col gap-3">
+            <div className="whitespace-pre-line leading-relaxed space-y-2">
+              {work.description}
+            </div>
             {work.href && (
               <a
                 href={work.href}
