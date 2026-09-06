@@ -1,0 +1,308 @@
+﻿import { Icons } from "@/components/icons";
+import { HomeIcon, NotebookIcon, FolderGit2, Award } from "lucide-react";
+import { Python } from "@/components/ui/svgs/python";
+import { Csharp } from "@/components/ui/svgs/csharp";
+
+export const DATA = {
+  name: "Pradeep S",
+  initials: "PS",
+  url: "https://github.com/Pradeepz01",
+  location: "Chennai, India",
+  locationLink: "https://www.google.com/maps/place/Chennai",
+  description:
+    "ECE (Major) & CSE (Minor) @ CEG’27, Anna University, Chennai. Embedded Systems, Firmware & RTL Design Engineer.",
+  summary:
+    "ECE undergraduate at College of Engineering, Guindy (Anna University, Chennai) with hands-on experience in Embedded C, bare-metal firmware development, and peripheral driver design across UART, SPI, I²C, timers, and interrupts. Experienced in microcontroller-based system design, motion-control firmware, and RTL design through academic projects and internships.",
+  avatarUrl: "/portfolio_pradeep.jpg",
+  skills: [
+    { name: "C" },
+    { name: "Embedded C" },
+    { name: "C++", icon: Csharp },
+    { name: "Python", icon: Python },
+    { name: "ARM Cortex-M4 (STM32F446RE)" },
+    { name: "PIC16F877A" },
+    { name: "Bare-Metal Programming" },
+    { name: "Peripheral Driver Development" },
+    { name: "UART" },
+    { name: "SPI" },
+    { name: "I²C" },
+    { name: "Timers & Interrupts" },
+    { name: "FSM (State Machines)" },
+    { name: "Arduino & ESP" },
+    { name: "Marlin Firmware" },
+    { name: "Verilog" },
+    { name: "RTL Design" },
+    { name: "RISC-V (RV32I)" },
+    { name: "AXI Protocol" },
+    { name: "Sky130 (Tiny Tapeout)" },
+    { name: "STM32CubeIDE" },
+    { name: "MPLAB X IDE" },
+    { name: "Vivado" },
+    { name: "ModelSim" },
+    { name: "GTKWave & Quartus" },
+    { name: "EasyEDA" },
+    { name: "GNU Radio" },
+    { name: "PICSimLab" },
+    { name: "MATLAB" },
+    { name: "Linux" },
+    { name: "Git" },
+    { name: "VS Code" },
+  ],
+  navbar: [
+    { href: "/", icon: HomeIcon, label: "Home" },
+    { href: "/#projects", icon: FolderGit2, label: "Projects" },
+    { href: "/#hackathons", icon: Award, label: "Certifications" },
+    { href: "/blog", icon: NotebookIcon, label: "Blog" },
+  ],
+  contact: {
+    email: "pradeepsaravana01@gmail.com",
+    tel: "+91 9342782799",
+    social: {
+      GitHub: {
+        name: "GitHub",
+        url: "https://github.com/Pradeepz01",
+        icon: Icons.github,
+        navbar: true,
+      },
+      LinkedIn: {
+        name: "LinkedIn",
+        url: "https://www.linkedin.com/in/pradeep-s06/",
+        icon: Icons.linkedin,
+        navbar: true,
+      },
+      LeetCode: {
+        name: "LeetCode",
+        url: "https://leetcode.com",
+        icon: Icons.leetcode,
+        navbar: true,
+      },
+      email: {
+        name: "Send Email",
+        url: "mailto:pradeepsaravana01@gmail.com",
+        icon: Icons.email,
+        navbar: false,
+      },
+    },
+  },
+
+  work: [
+    {
+      company: "Embedded Systems Intern – Emertxe Information Technologies",
+      href: "https://github.com/Pradeepz01/EMERTXE_INTERNSHIP",
+      badges: ["Internship"],
+      location: "Virtual / Remote",
+      title: "Embedded Systems Intern",
+      logoUrl: "",
+      start: "Dec 2025",
+      end: "Jan 2026",
+      description:
+        "Developed Embedded C applications on PIC16F877A using timers, interrupts, bit manipulation, peripheral interfacing, and modular driver-based programming. Built a Microwave Oven Controller in PICSimLab featuring FSM-based control, keypad/LCD interfacing, multiple cooking modes, and timer management.",
+    },
+    {
+      company: "Wireless Transceiver Design Intern — CWISD, Anna University",
+      href: "https://github.com/Pradeepz01/Digital-Adaptive-Reconstruction-and-Transmission",
+      badges: ["Internship"],
+      location: "Chennai, India",
+      title: "Wireless Transceiver Design Intern",
+      logoUrl: "/transceiver.jpg",
+      start: "Jun 2025",
+      end: "Jun 2025",
+      description:
+        "Implemented ASK, PSK, QAM, and OFDM modulation using GNU Radio with signal generation, channel simulation, and performance evaluation. Designed digital filters and signal flow graphs while gaining exposure to baseband processing and wireless transceiver architecture.",
+    },
+  ],
+  education: [
+    {
+      school: "College of Engineering, Guindy (CEG), Anna University, Chennai",
+      href: "https://ceg.annauniv.edu",
+      degree:
+        "B.E. in Electronics and Communication Engineering (Major) & Minor in Computer Science (Cybersecurity) | CGPA: 7.99",
+      logoUrl: "",
+      start: "2023",
+      end: "2027",
+    },
+    {
+      school: "SPK Gems Schools",
+      href: "#",
+      degree: "Higher Secondary Education (HSC) | Aggregate: 96.5%",
+      logoUrl: "",
+      start: "2021",
+      end: "2023",
+    },
+  ],
+  projects: [
+    {
+      title: "Secure Bootloader and OTA Firmware Update Framework",
+      href: "https://github.com/Pradeepz01/SecureBootLoader-OTA",
+      dates: "Jul 2026 – Present",
+      active: true,
+      description:
+        "Developing a custom bootloader on STM32F446RE with packet-based UART communication and Flash memory management, supporting Flash erase and data programming. Extending the bootloader toward secure OTA firmware updates with firmware validation, application/bootloader separation, rollback protection, and integrity verification.",
+      technologies: [
+        "Embedded C",
+        "ARM Cortex-M4",
+        "STM32F446RE",
+        "UART",
+        "Flash Memory",
+        "Bootloader",
+        "OTA Firmware",
+      ],
+      links: [
+        {
+          type: "Source",
+          href: "https://github.com/Pradeepz01/SecureBootLoader-OTA",
+          icon: <Icons.github className="size-3" />,
+        },
+      ],
+      image: "",
+      video: "",
+    },
+    {
+      title: "True Random Number Generator (TRNG) – Tiny Tapeout (Sky130)",
+      href: "https://github.com/Pradeepz01/TRNG",
+      dates: "May 2026 – Present",
+      active: true,
+      description:
+        "Designed a Verilog-based hardware TRNG using ring-oscillator jitter as an entropy source, with sampling and entropy-conditioning logic. Implementing entropy conditioning through sampling, Von Neumann correction, health testing, and output buffering, targeting Tiny Tapeout ASIC fabrication.",
+      technologies: [
+        "Verilog",
+        "RTL Design",
+        "Tiny Tapeout",
+        "Sky130",
+        "ASIC",
+        "Vivado",
+        "Hardware Security",
+      ],
+      links: [
+        {
+          type: "Source",
+          href: "https://github.com/Pradeepz01/TRNG",
+          icon: <Icons.github className="size-3" />,
+        },
+      ],
+      image: "",
+      video: "",
+    },
+    {
+      title: "RISC-V Data Memory AXI IP",
+      href: "https://github.com/Pradeepz01/CEG_FABLESS_RISCV-DATA-MEMORY",
+      dates: "Jan 2026",
+      active: true,
+      description:
+        "Designed an RV32I data-memory block supporting load/store operations, byte/halfword access, address decoding, and sign/zero extension for the CEG FABLESS DEV team. Integrated the memory as an AXI-compliant IP and verified functionality through RTL simulation and waveform analysis using Vivado.",
+      technologies: [
+        "Verilog",
+        "RISC-V",
+        "RV32I",
+        "AXI Protocol",
+        "Vivado",
+        "ModelSim",
+        "RTL Simulation",
+      ],
+      links: [
+        {
+          type: "Source",
+          href: "https://github.com/Pradeepz01/CEG_FABLESS_RISCV-DATA-MEMORY",
+          icon: <Icons.github className="size-3" />,
+        },
+      ],
+      image: "",
+      video: "",
+    },
+    {
+      title: "Hybrid 3D Printer (SLA + FDM)",
+      href: "https://github.com/Pradeepz01/Marlin_Hybrid3DPrinter",
+      dates: "Dec 2024 – Jan 2025",
+      active: true,
+      description:
+        "Led electronics integration including motor drivers, sensor interfacing, power distribution, and hardware debugging for a hybrid SLA + FDM 3D printer. Customized Marlin firmware and implemented G-code based control logic for synchronized resin extrusion, UV curing, and motion control.",
+      technologies: [
+        "Embedded C",
+        "Marlin Firmware",
+        "G-Code",
+        "Hardware Integration",
+        "Motion Control",
+        "SLA + FDM",
+      ],
+      links: [
+        {
+          type: "Source",
+          href: "https://github.com/Pradeepz01/Marlin_Hybrid3DPrinter",
+          icon: <Icons.github className="size-3" />,
+        },
+        {
+          type: "Certificate",
+          href: "/certifications/Hybrid3DPrinter_P&R_Pradeep_S_LOA.pdf",
+          icon: <Icons.globe className="size-3" />,
+        },
+      ],
+      image: "/3dprinter.jpg",
+      video: "",
+    },
+  ],
+  hackathons: [
+    {
+      title: "Mastering Microcontroller and Embedded Driver Development",
+      dates: "FastBit Academy",
+      location: "ARM Cortex-M4 Bare-Metal Development",
+      description:
+        "In-depth bare-metal driver development from scratch for ARM Cortex-M4 (STM32F4) peripherals: GPIO, I2C, SPI, USART, NVIC, RCC, timers, and interrupt handling.",
+      image: "",
+      links: [],
+    },
+    {
+      title: "Fundamentals of Verilog HDL",
+      dates: "Udemy",
+      location: "Digital Design & RTL Modeling",
+      description:
+        "Comprehensive training on Verilog hardware description language, behavioral and structural modelling, testbench architecture, simulation, and synthesis.",
+      image: "",
+      links: [],
+    },
+    {
+      title: "Letter of Appreciation – Hybrid 3D Printer Contribution",
+      dates: "CTF (Centre for Technology Development and Transfer)",
+      location: "College of Engineering, Guindy",
+      description:
+        "Awarded official Letter of Appreciation for leading electronics integration, Marlin firmware customization, UV curing synchronization, and motion control for the hybrid SLA + FDM printer.",
+      image: "",
+      links: [
+        {
+          title: "View Certificate",
+          icon: <Icons.globe className="h-4 w-4" />,
+          href: "/certifications/Hybrid3DPrinter_P&R_Pradeep_S_LOA.pdf",
+        },
+      ],
+    },
+    {
+      title: "Introduction to Internet of Things (IoT)",
+      dates: "NPTEL (Elite Certification)",
+      location: "IIT Kharagpur / SWAYAM",
+      description:
+        "Certified in IoT fundamentals, embedded sensor networks, IoT communication protocols (MQTT, CoAP), wireless network topologies, and embedded system integration.",
+      image: "",
+      links: [
+        {
+          title: "View Certificate",
+          icon: <Icons.globe className="h-4 w-4" />,
+          href: "/certifications/Introduction To Internet Of Things.pdf",
+        },
+      ],
+    },
+    {
+      title: "Problem Solving in Python",
+      dates: "HackerRank",
+      location: "Algorithms & Data Structures",
+      description:
+        "Certified in core problem solving, algorithmic thinking, data structures, and Python implementations.",
+      image: "/python.jpg",
+      links: [
+        {
+          title: "GitHub Profile",
+          icon: <Icons.github className="h-4 w-4" />,
+          href: "https://github.com/Pradeepz01",
+        },
+      ],
+    },
+  ],
+} as const;
