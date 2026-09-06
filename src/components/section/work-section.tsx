@@ -16,17 +16,21 @@ function LogoImage({ src, alt }: { src: string; alt: string }) {
 
   if (!src || imageError) {
     return (
-      <div className="size-8 md:size-10 p-1 border rounded-full shadow ring-2 ring-border bg-muted flex-none" />
+      <div className="size-10 md:size-12 p-1.5 border rounded-xl shadow-xs ring-1 ring-border/50 bg-muted flex items-center justify-center flex-none font-bold text-xs text-muted-foreground">
+        {alt.slice(0, 2).toUpperCase()}
+      </div>
     );
   }
 
   return (
-    <img
-      src={src}
-      alt={alt}
-      className="size-8 md:size-10 p-1 border rounded-full shadow ring-2 ring-border overflow-hidden object-contain flex-none"
-      onError={() => setImageError(true)}
-    />
+    <div className="size-10 md:size-12 p-1.5 border border-border/60 rounded-xl bg-white shadow-xs ring-1 ring-border/40 overflow-hidden flex items-center justify-center flex-none">
+      <img
+        src={src}
+        alt={alt}
+        className="max-h-full max-w-full object-contain"
+        onError={() => setImageError(true)}
+      />
+    </div>
   );
 }
 

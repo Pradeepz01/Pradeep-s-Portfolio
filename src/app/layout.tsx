@@ -70,20 +70,20 @@ export default function RootLayout({
           geistMono.variable
         )}
       >
-        <ThemeProvider attribute="class" defaultTheme="light">
+        <ThemeProvider attribute="class" defaultTheme="dark">
           <TooltipProvider delayDuration={0}>
-            <div className="absolute inset-0 top-0 left-0 right-0 h-[100px] overflow-hidden z-0">
+            <div className="absolute inset-0 top-0 left-0 right-0 h-[300px] overflow-hidden z-0 pointer-events-none">
               <FlickeringGrid
-                className="h-full w-full"
-                squareSize={2}
-                gridGap={2}
+                className="h-full w-full opacity-40 dark:opacity-30"
+                squareSize={3}
+                gridGap={3}
                 style={{
-                  maskImage: "linear-gradient(to bottom, black, transparent)",
-                  WebkitMaskImage: "linear-gradient(to bottom, black, transparent)",
+                  maskImage: "radial-gradient(ellipse 70% 60% at 50% 0%, black 40%, transparent 100%)",
+                  WebkitMaskImage: "radial-gradient(ellipse 70% 60% at 50% 0%, black 40%, transparent 100%)",
                 }}
               />
             </div>
-            <div className="relative z-10 max-w-2xl mx-auto py-12 pb-24 sm:py-24 px-6">
+            <div className="relative z-10 max-w-4xl mx-auto py-12 pb-28 sm:py-20 px-4 sm:px-6 lg:px-8">
               {children}
             </div>
             <Navbar />

@@ -1,4 +1,4 @@
-﻿import { Icons } from "@/components/icons";
+import { Icons } from "@/components/icons";
 import { HomeIcon, NotebookIcon, FolderGit2, Award } from "lucide-react";
 import { Python } from "@/components/ui/svgs/python";
 import { Csharp } from "@/components/ui/svgs/csharp";
@@ -92,7 +92,7 @@ export const DATA = {
       badges: ["Internship"],
       location: "Virtual / Remote",
       title: "Embedded Systems Intern",
-      logoUrl: "",
+      logoUrl: "/emertxe.png",
       start: "Dec 2025",
       end: "Jan 2026",
       description:
@@ -104,7 +104,7 @@ export const DATA = {
       badges: ["Internship"],
       location: "Chennai, India",
       title: "Wireless Transceiver Design Intern",
-      logoUrl: "/transceiver.jpg",
+      logoUrl: "/anna_univ.png",
       start: "Jun 2025",
       end: "Jun 2025",
       description:
@@ -117,7 +117,7 @@ export const DATA = {
       href: "https://ceg.annauniv.edu",
       degree:
         "B.E. in Electronics and Communication Engineering (Major) & Minor in Computer Science (Cybersecurity) | CGPA: 7.99",
-      logoUrl: "",
+      logoUrl: "/anna_univ.png",
       start: "2023",
       end: "2027",
     },
@@ -154,7 +154,7 @@ export const DATA = {
           icon: <Icons.github className="size-3" />,
         },
       ],
-      image: "",
+      image: "/projects/bootloader.svg",
       video: "",
     },
     {
@@ -180,7 +180,7 @@ export const DATA = {
           icon: <Icons.github className="size-3" />,
         },
       ],
-      image: "",
+      image: "/projects/trng.svg",
       video: "",
     },
     {
@@ -206,7 +206,7 @@ export const DATA = {
           icon: <Icons.github className="size-3" />,
         },
       ],
-      image: "",
+      image: "/projects/riscv.svg",
       video: "",
     },
     {
