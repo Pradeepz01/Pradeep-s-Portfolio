@@ -94,22 +94,22 @@ export function Structure3D({ className = "" }: Structure3DProps) {
     let height = 0;
     const isDark = resolvedTheme !== "light";
 
-    // Setup color palette: Black, White, and Crimson Red strictly
+    // Setup color palette: Black, White, and Crimson Red strictly (subtle background depth)
     const primaryWireColor = isDark
-      ? "rgba(255, 255, 255, 0.24)"
-      : "rgba(15, 23, 42, 0.28)";
+      ? "rgba(255, 255, 255, 0.14)"
+      : "rgba(15, 23, 42, 0.12)";
 
     const accentWireColor = isDark
-      ? "rgba(239, 68, 68, 0.75)"
-      : "rgba(220, 38, 38, 0.75)";
+      ? "rgba(239, 68, 68, 0.40)"
+      : "rgba(220, 38, 38, 0.35)";
 
     const primaryNodeColor = isDark
-      ? "rgba(255, 255, 255, 0.85)"
-      : "rgba(15, 23, 42, 0.9)";
+      ? "rgba(255, 255, 255, 0.40)"
+      : "rgba(15, 23, 42, 0.35)";
 
     const accentNodeColor = isDark
-      ? "rgba(239, 68, 68, 0.95)"
-      : "rgba(220, 38, 38, 0.95)";
+      ? "rgba(239, 68, 68, 0.60)"
+      : "rgba(220, 38, 38, 0.55)";
 
     // Resize canvas
     const handleResize = () => {

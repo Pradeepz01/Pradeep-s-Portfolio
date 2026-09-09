@@ -73,7 +73,7 @@ export default function RootLayout({
           geistMono.variable
         )}
       >
-        <ThemeProvider attribute="class" defaultTheme="dark">
+        <ThemeProvider attribute="class" defaultTheme="light">
           <TooltipProvider delayDuration={0}>
             {/* 3D Geometric Structured Background (Black/White/Red) */}
             <Structure3D />

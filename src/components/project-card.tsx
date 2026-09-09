@@ -58,7 +58,7 @@ export function ProjectCard({
   return (
     <div
       className={cn(
-        "flex flex-col md:flex-row h-auto md:h-[350px] border border-border/70 dark:border-border/50 rounded-2xl overflow-hidden bg-card/75 backdrop-blur-xs hover:border-primary/50 shadow-xs hover:shadow-xl hover:shadow-primary/5 transition-all duration-300 group",
+        "flex flex-col md:flex-row h-auto md:h-[350px] border border-border/80 dark:border-border/60 rounded-2xl overflow-hidden bg-card/95 dark:bg-zinc-900/95 backdrop-blur-md hover:border-primary/50 shadow-xs hover:shadow-xl hover:shadow-primary/5 transition-all duration-300 group",
         className
       )}
     >

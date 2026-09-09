@@ -236,9 +236,14 @@ export default function Page() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
             {/* Work Experience Column */}
             <div className="lg:col-span-7 flex flex-col gap-3">
-              <h3 className="h-6 flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-muted-foreground">
-                <span className="h-1.5 w-1.5 rounded-full bg-red-500" />
-                Work Experience &amp; Internships
+              <h3 className="h-6 flex items-center justify-between text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+                <span className="flex items-center gap-2">
+                  <span className="h-1.5 w-1.5 rounded-full bg-red-500" />
+                  Work Experience &amp; Internships
+                </span>
+                <span className="text-[11px] font-normal normal-case font-mono text-muted-foreground/80">
+                  (Click to view details)
+                </span>
               </h3>
               <WorkSection />
             </div>
@@ -294,7 +299,7 @@ export default function Page() {
 
       {/* ═══════ 5. Certifications (With Verified Links) ═══════ */}
       <AnimatedSection id="hackathons" animation="slide-right" className="px-4 sm:px-6 lg:px-8 py-8">
-        <div className="max-w-4xl mx-auto w-full">
+        <div className="max-w-5xl mx-auto w-full p-6 sm:p-8 rounded-3xl border border-border/80 bg-background/90 dark:bg-zinc-950/90 backdrop-blur-xl shadow-2xl shadow-black/25">
           <HackathonsSection />
         </div>
       </AnimatedSection>

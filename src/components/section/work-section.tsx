@@ -48,8 +48,14 @@ export default function WorkSection() {
               <div className="flex items-center gap-x-3 flex-1 min-w-0">
                 <LogoImage src={work.logoUrl} alt={work.company} />
                 <div className="flex-1 min-w-0 gap-0.5 flex flex-col">
-                  <div className="font-semibold leading-none flex items-center gap-2">
-                    {work.company}
+                  <div className="font-semibold leading-none flex items-center gap-2 flex-wrap">
+                    <span>{work.company}</span>
+                    <span className="text-[10px] font-mono font-medium px-2 py-0.5 rounded-md bg-sky-500/10 dark:bg-sky-400/10 text-sky-600 dark:text-sky-400 border border-sky-500/20 group-data-[state=open]:hidden inline-flex items-center gap-1">
+                      Click to view &darr;
+                    </span>
+                    <span className="text-[10px] font-mono font-medium px-2 py-0.5 rounded-md bg-muted text-muted-foreground border border-border/60 group-data-[state=closed]:hidden inline-flex items-center gap-1">
+                      Click to close &uarr;
+                    </span>
                     <span className="relative inline-flex items-center w-3.5 h-3.5">
                       <ChevronRight
                         className={cn(
