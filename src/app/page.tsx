@@ -158,7 +158,7 @@ export default function Page() {
 
       {/* ═══════ 2. About & Skills (Combined Section) ═══════ */}
       <AnimatedSection id="about" animation="fade-up" className="px-4 sm:px-6 lg:px-8 py-8">
-        <div className="max-w-5xl mx-auto w-full p-6 sm:p-8 rounded-3xl border border-border/80 bg-background/90 dark:bg-zinc-950/90 backdrop-blur-xl shadow-2xl shadow-black/25 space-y-6">
+        <div className="max-w-5xl mx-auto w-full p-4 sm:p-6 lg:p-8 rounded-2xl sm:rounded-3xl border border-border/80 bg-background/90 dark:bg-zinc-950/90 backdrop-blur-xl shadow-2xl shadow-black/25 space-y-6">
           <div className="flex items-center gap-3">
             <h2 className="text-xl sm:text-2xl font-bold tracking-tight">About &amp; Technical Expertise</h2>
             <div className="flex-1 h-px bg-border/60" />
@@ -227,7 +227,7 @@ export default function Page() {
 
       {/* ═══════ 4. Experience & Education (Combined Section) ═══════ */}
       <AnimatedSection id="work" animation="slide-left" className="px-4 sm:px-6 lg:px-8 py-8">
-        <div className="max-w-5xl mx-auto w-full p-6 sm:p-8 rounded-3xl border border-border/80 bg-background/90 dark:bg-zinc-950/90 backdrop-blur-xl shadow-2xl shadow-black/25 space-y-6">
+        <div className="max-w-5xl mx-auto w-full p-4 sm:p-6 lg:p-8 rounded-2xl sm:rounded-3xl border border-border/80 bg-background/90 dark:bg-zinc-950/90 backdrop-blur-xl shadow-2xl shadow-black/25 space-y-6">
           <div className="flex items-center gap-3">
             <h2 className="text-xl sm:text-2xl font-bold tracking-tight">Experience &amp; Education</h2>
             <div className="flex-1 h-px bg-border/60" />
@@ -299,7 +299,7 @@ export default function Page() {
 
       {/* ═══════ 5. Certifications (With Verified Links) ═══════ */}
       <AnimatedSection id="hackathons" animation="slide-right" className="px-4 sm:px-6 lg:px-8 py-8">
-        <div className="max-w-5xl mx-auto w-full p-6 sm:p-8 rounded-3xl border border-border/80 bg-background/90 dark:bg-zinc-950/90 backdrop-blur-xl shadow-2xl shadow-black/25">
+        <div className="max-w-5xl mx-auto w-full p-4 sm:p-6 lg:p-8 rounded-2xl sm:rounded-3xl border border-border/80 bg-background/90 dark:bg-zinc-950/90 backdrop-blur-xl shadow-2xl shadow-black/25">
           <HackathonsSection />
         </div>
       </AnimatedSection>

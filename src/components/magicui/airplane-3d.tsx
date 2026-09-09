@@ -86,9 +86,13 @@ export function Airplane3D({ className = "" }: Airplane3DProps) {
     const isDark = resolvedTheme !== "light";
     const dpr = Math.min(window.devicePixelRatio || 1, 2);
 
+    const getScale = (w: number) => (w < 768 ? 0.72 : 0.92);
+    let model = getAirplaneGeometry(getScale(width));
+
     const handleResize = () => {
       width = window.innerWidth;
       height = window.innerHeight;
+      model = getAirplaneGeometry(getScale(width));
       canvas.width = width * dpr;
       canvas.height = height * dpr;
       canvas.style.width = `${width}px`;
@@ -130,10 +134,17 @@ export function Airplane3D({ className = "" }: Airplane3DProps) {
       plane.targetY = e.clientY + 38;
     };
 
-    window.addEventListener("mousemove", handleMouseMove);
+    const handleTouchMove = (e: TouchEvent) => {
+      if (e.touches.length > 0) {
+        lastUserMove = Date.now();
+        isOrbiting = false;
+        plane.targetX = e.touches[0].clientX + 24;
+        plane.targetY = e.touches[0].clientY + 28;
+      }
+    };
 
-    // Reduced by 20% (from 1.15 down to 0.92) as requested
-    const model = getAirplaneGeometry(0.92);
+    window.addEventListener("mousemove", handleMouseMove);
+    window.addEventListener("touchmove", handleTouchMove, { passive: true });
 
     // Strict color scheme: Black, White, and Crimson Red
     const wireColor = isDark
@@ -352,6 +363,7 @@ export function Airplane3D({ className = "" }: Airplane3DProps) {
       cancelAnimationFrame(animId);
       window.removeEventListener("resize", handleResize);
       window.removeEventListener("mousemove", handleMouseMove);
+      window.removeEventListener("touchmove", handleTouchMove);
     };
   }, [resolvedTheme]);
 
