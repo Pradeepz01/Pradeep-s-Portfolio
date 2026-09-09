@@ -5,7 +5,7 @@ import { Mail, ArrowUpRight } from "lucide-react";
 
 export default function ContactSection() {
   return (
-    <footer className="w-full flex flex-col justify-between min-h-[60vh] text-center pt-8">
+    <footer className="w-full flex-1 flex flex-col justify-between text-center">
       {/* Center content */}
       <div className="max-w-2xl mx-auto px-4 space-y-6 my-auto">
         {/* Availability Status Chip */}
@@ -49,12 +49,12 @@ export default function ContactSection() {
         </div>
       </div>
 
-      {/* Full-width bottom corner footer: Left corner has Copyright, Right corner has Owner */}
-      <div className="w-full border-t border-border/60 mt-16 py-5 px-6 sm:px-10 lg:px-16 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-muted-foreground font-mono">
-        <div className="text-left w-full sm:w-auto">
+      {/* Bottom corner footer: Exactly in level and alignment with the hover menu (bottom-4, h-14) */}
+      <div className="w-full sm:h-14 px-4 sm:px-10 lg:px-16 flex flex-col sm:flex-row items-center justify-between gap-1 pb-20 sm:pb-0 text-xs text-muted-foreground font-mono">
+        <div className="text-center sm:text-left flex items-center">
           <span>© 2026 Pradeep S. All rights reserved.</span>
         </div>
-        <div className="text-right w-full sm:w-auto flex items-center justify-end gap-3">
+        <div className="text-center sm:text-right flex items-center justify-end gap-3">
           <span>Owner: <strong className="text-foreground font-medium font-sans">Pradeep S</strong></span>
           <span>•</span>
           <span>Chennai, India</span>
