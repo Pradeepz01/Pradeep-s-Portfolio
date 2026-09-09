@@ -309,7 +309,7 @@ export default function Page() {
         id="contact"
         animation="fade-scale"
         center={false}
-        className="w-full min-h-dvh flex flex-col justify-between pt-12 pb-4 px-0"
+        className="w-full min-h-dvh flex flex-col justify-between pt-4 pb-4 px-0"
       >
         <ContactSection />
       </AnimatedSection>

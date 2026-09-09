@@ -7,33 +7,33 @@ export default function ContactSection() {
   return (
     <footer className="w-full flex-1 flex flex-col justify-between text-center">
       {/* Center content */}
-      <div className="max-w-2xl mx-auto px-4 space-y-6 my-auto">
+      <div className="max-w-3xl mx-auto px-4 my-auto flex flex-col items-center justify-center text-center space-y-6 sm:space-y-8">
         {/* Availability Status Chip */}
-        <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full border border-emerald-500/30 bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 text-xs font-semibold tracking-wide">
-          <span className="relative flex h-2 w-2">
+        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-emerald-500/30 bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 text-xs sm:text-sm font-semibold tracking-wide shadow-xs">
+          <span className="relative flex h-2.5 w-2.5">
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-            <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+            <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-500"></span>
           </span>
           <span>Open for Opportunities &amp; Collaborations</span>
         </div>
 
-        {/* Heading */}
-        <div className="space-y-2">
-          <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight text-foreground">
+        {/* Big Bold Heading & Subtitle */}
+        <div className="space-y-3 sm:space-y-4">
+          <h2 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-black tracking-tighter text-foreground leading-[1.05]">
             Get in Touch
           </h2>
-          <p className="text-sm sm:text-base text-muted-foreground leading-relaxed max-w-lg mx-auto">
+          <p className="text-base sm:text-lg md:text-xl text-muted-foreground leading-relaxed max-w-xl mx-auto">
             Whether you want to discuss embedded systems firmware, bare-metal drivers, RTL design, or potential roles — feel free to reach out.
           </p>
         </div>
 
         {/* Simple clickable text contact links */}
-        <div className="flex flex-wrap items-center justify-center gap-5 text-sm">
+        <div className="flex flex-wrap items-center justify-center gap-6 text-base sm:text-lg font-medium pt-2">
           <a
             href={`mailto:${DATA.contact.email}`}
-            className="text-foreground hover:text-primary font-medium underline underline-offset-4 decoration-border hover:decoration-primary transition-colors inline-flex items-center gap-1.5"
+            className="text-foreground hover:text-primary font-semibold underline underline-offset-4 decoration-border hover:decoration-primary transition-colors inline-flex items-center gap-2"
           >
-            <Mail className="size-3.5 text-muted-foreground" />
+            <Mail className="size-4 sm:size-5 text-muted-foreground" />
             <span>{DATA.contact.email}</span>
           </a>
           <span className="text-muted-foreground/40">•</span>
@@ -41,10 +41,10 @@ export default function ContactSection() {
             href={DATA.contact.social.LinkedIn.url}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-foreground hover:text-primary font-medium underline underline-offset-4 decoration-border hover:decoration-primary transition-colors inline-flex items-center gap-1"
+            className="text-foreground hover:text-primary font-semibold underline underline-offset-4 decoration-border hover:decoration-primary transition-colors inline-flex items-center gap-1.5"
           >
             <span>LinkedIn</span>
-            <ArrowUpRight className="size-3.5 text-muted-foreground" />
+            <ArrowUpRight className="size-4 sm:size-5 text-muted-foreground" />
           </a>
         </div>
       </div>
