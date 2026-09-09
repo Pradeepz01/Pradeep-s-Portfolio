@@ -118,8 +118,14 @@ export function Airplane3D({ className = "" }: Airplane3DProps) {
     };
 
     // Track mouse coordinates directly on screen with slight offset
-    // Offsetting the plane by +32px to the right and +36px downward so the cursor tip and text are never blocked!
+    let lastUserMove = Date.now();
+    let orbitAngle = 0;
+    let isOrbiting = false;
+
+    // Offsetting the plane by +34px to the right and +38px downward so the cursor tip and text are never blocked!
     const handleMouseMove = (e: MouseEvent) => {
+      lastUserMove = Date.now();
+      isOrbiting = false;
       plane.targetX = e.clientX + 34;
       plane.targetY = e.clientY + 38;
     };
@@ -142,14 +148,43 @@ export function Airplane3D({ className = "" }: Airplane3DProps) {
     const render = () => {
       ctx.clearRect(0, 0, width, height);
 
-      // Distance and directional vector to target cursor
+      const now = Date.now();
+      const idleTime = now - lastUserMove;
+
+      // ═══════ Autonomous Patrol / Orbit Mode ("Round and Round the Website") ═══════
+      // If left untouched for > 1.6s, the plane cruises along an elliptical path around the perimeter of the website
+      if (idleTime > 1600) {
+        const cx = width / 2;
+        const cy = height / 2;
+        const rx = Math.max(width * 0.44, 280);
+        const ry = Math.max(height * 0.40, 200);
+
+        if (!isOrbiting) {
+          isOrbiting = true;
+          // Synchronize orbit angle to current position relative to center
+          orbitAngle = Math.atan2((plane.y - cy) / ry, (plane.x - cx) / rx);
+        }
+
+        // Advance orbit angle continuously (1 lap every ~15 seconds)
+        orbitAngle += 0.014;
+
+        // Elliptical flight path around perimeter of viewport
+        const orbitTargetX = cx + Math.cos(orbitAngle) * rx;
+        const orbitTargetY = cy + Math.sin(orbitAngle) * ry;
+
+        // Smoothly steer target towards orbit
+        plane.targetX += (orbitTargetX - plane.targetX) * 0.08;
+        plane.targetY += (orbitTargetY - plane.targetY) * 0.08;
+      }
+
+      // Distance and directional vector to target cursor or orbit waypoint
       const dx = plane.targetX - plane.x;
       const dy = plane.targetY - plane.y;
       const dist = Math.sqrt(dx * dx + dy * dy);
 
-      // Responsive lerp movement towards cursor
-      const maxSpeed = 30;
-      const speed = Math.min(dist * 0.11, maxSpeed);
+      // Responsive lerp movement towards cursor or cruising speed during orbit
+      const maxSpeed = isOrbiting ? 15 : 30;
+      const speed = isOrbiting ? Math.min(dist * 0.09, maxSpeed) : Math.min(dist * 0.11, maxSpeed);
 
       if (dist > 2.0) {
         plane.vx = (dx / dist) * speed;
@@ -164,15 +199,15 @@ export function Airplane3D({ className = "" }: Airplane3DProps) {
 
       // ═══════ Bending into Full Side View While Moving ═══════
       // At rest (vx == 0): straight front view (yaw = 0)
-      // Any horizontal mouse stroke rapidly pivots the aircraft into full side profile
+      // Any horizontal movement rapidly pivots the aircraft into full side profile
       const maxSideAngle = Math.PI * 0.46; // ~83 degrees (clear side view)
-      const targetYaw = Math.max(-maxSideAngle, Math.min(maxSideAngle, plane.vx * 0.18));
+      const targetYaw = Math.max(-maxSideAngle, Math.min(maxSideAngle, plane.vx * 0.20));
 
       // Aerodynamic banking (Roll)
-      const targetRoll = Math.max(-0.55, Math.min(0.55, plane.vx * 0.08));
+      const targetRoll = Math.max(-0.60, Math.min(0.60, plane.vx * 0.09));
 
       // Pitch climb/dive (nose pitches up when ascending, down when descending)
-      const targetPitch = Math.max(-0.4, Math.min(0.4, plane.vy * 0.06));
+      const targetPitch = Math.max(-0.45, Math.min(0.45, plane.vy * 0.07));
 
       // Quick response lerp
       plane.yaw += (targetYaw - plane.yaw) * 0.16;

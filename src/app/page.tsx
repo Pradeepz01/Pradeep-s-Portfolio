@@ -304,11 +304,9 @@ export default function Page() {
         </div>
       </AnimatedSection>
 
-      {/* ═══════ 6. Contact ═══════ */}
-      <AnimatedSection id="contact" animation="fade-scale" center={false} className="px-4 sm:px-6 lg:px-8 pt-10 pb-36 min-h-0 flex flex-col justify-center">
-        <div className="max-w-4xl mx-auto w-full my-auto">
-          <ContactSection />
-        </div>
+      {/* ═══════ 6. Contact & Footer ═══════ */}
+      <AnimatedSection id="contact" animation="fade-scale" center={false} className="w-full pt-10 pb-20 min-h-[75vh] flex flex-col justify-between">
+        <ContactSection />
       </AnimatedSection>
     </main>
   );

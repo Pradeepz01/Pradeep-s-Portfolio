@@ -76,6 +76,32 @@ function createOctahedron(radius: number): { vertices: Point3D[]; edges: [number
   return { vertices, edges };
 }
 
+// Generates vertices and edges for a Hexagonal Bipyramid (Aerospace Crystal)
+function createBipyramid(radius: number): { vertices: Point3D[]; edges: [number, number][] } {
+  const vertices: Point3D[] = [
+    { x: 0, y: radius * 1.35, z: 0 },   // Top apex
+    { x: 0, y: -radius * 1.35, z: 0 },  // Bottom apex
+  ];
+  const segments = 6;
+  for (let i = 0; i < segments; i++) {
+    const angle = (i / segments) * Math.PI * 2;
+    vertices.push({
+      x: Math.cos(angle) * radius,
+      y: 0,
+      z: Math.sin(angle) * radius,
+    });
+  }
+  const edges: [number, number][] = [];
+  for (let i = 0; i < segments; i++) {
+    const curr = i + 2;
+    const next = ((i + 1) % segments) + 2;
+    edges.push([curr, next]); // Equator ring
+    edges.push([0, curr]);    // To top apex
+    edges.push([1, curr]);    // To bottom apex
+  }
+  return { vertices, edges };
+}
+
 export function Structure3D({ className = "" }: Structure3DProps) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -94,22 +120,22 @@ export function Structure3D({ className = "" }: Structure3DProps) {
     let height = 0;
     const isDark = resolvedTheme !== "light";
 
-    // Setup color palette: Black, White, and Crimson Red strictly (subtle background depth)
+    // Setup color palette: Black, White, and Crimson Red strictly
     const primaryWireColor = isDark
-      ? "rgba(255, 255, 255, 0.14)"
-      : "rgba(15, 23, 42, 0.12)";
+      ? "rgba(255, 255, 255, 0.16)"
+      : "rgba(15, 23, 42, 0.14)";
 
     const accentWireColor = isDark
-      ? "rgba(239, 68, 68, 0.40)"
-      : "rgba(220, 38, 38, 0.35)";
+      ? "rgba(239, 68, 68, 0.50)"
+      : "rgba(220, 38, 38, 0.45)";
 
     const primaryNodeColor = isDark
-      ? "rgba(255, 255, 255, 0.40)"
-      : "rgba(15, 23, 42, 0.35)";
+      ? "rgba(255, 255, 255, 0.55)"
+      : "rgba(15, 23, 42, 0.50)";
 
     const accentNodeColor = isDark
-      ? "rgba(239, 68, 68, 0.60)"
-      : "rgba(220, 38, 38, 0.55)";
+      ? "rgba(239, 68, 68, 0.80)"
+      : "rgba(220, 38, 38, 0.75)";
 
     // Resize canvas
     const handleResize = () => {
@@ -136,76 +162,87 @@ export function Structure3D({ className = "" }: Structure3DProps) {
     };
     window.addEventListener("mousemove", handleMouseMove);
 
-    // Create 3D Polyhedra structures
-    const polyhedra: Polyhedron[] = [];
+    // ══════════════════════════════════════════════════════════════
+    // Polyhedra setup: Single Big One in center, all others on sides
+    // ══════════════════════════════════════════════════════════════
+    type PolyConfig = {
+      isCenter?: boolean;
+      side?: "left" | "right";
+      relXFactor: number;
+      baseY: number;
+      z: number;
+      radius: number;
+      shape: "ico" | "oct" | "bipyramid";
+      isAccent: boolean;
+      rotSpeed: { x: number; y: number; z: number };
+    };
 
-    // Central prominent structural Icosahedron
-    const centerIco = createIcosahedron(115);
-    polyhedra.push({
-      position: { x: 0, y: -20, z: 0 },
-      rotation: { x: 0.2, y: 0.4, z: 0 },
-      rotSpeed: { x: 0.003, y: 0.005, z: 0.002 },
-      scale: 1,
-      vertices: centerIco.vertices,
-      edges: centerIco.edges,
-      isAccent: false,
-    });
+    const polyConfigs: PolyConfig[] = [
+      // 1. SINGLE BIG ONE IN THE EXACT CENTER
+      {
+        isCenter: true,
+        relXFactor: 0,
+        baseY: 0,
+        z: -30,
+        radius: 155,
+        shape: "ico",
+        isAccent: false,
+        rotSpeed: { x: 0.0025, y: 0.004, z: 0.0015 },
+      },
 
-    // Medium background accent Icosahedron with red highlights
-    const rightIco = createIcosahedron(68);
-    polyhedra.push({
-      position: { x: 330, y: -130, z: -90 },
-      rotation: { x: 0.8, y: 0.2, z: 0.5 },
-      rotSpeed: { x: -0.004, y: 0.006, z: -0.003 },
-      scale: 1,
-      vertices: rightIco.vertices,
-      edges: rightIco.edges,
-      isAccent: true,
-    });
+      // 2. LEFT FLANK (Strictly in the left margins of the screen, clear of text)
+      { side: "left", relXFactor: 0.43, baseY: -380, z: -80, radius: 52, shape: "oct", isAccent: false, rotSpeed: { x: 0.004, y: -0.003, z: 0.002 } },
+      { side: "left", relXFactor: 0.38, baseY: -270, z: -140, radius: 70, shape: "ico", isAccent: true, rotSpeed: { x: -0.003, y: 0.005, z: -0.002 } },
+      { side: "left", relXFactor: 0.46, baseY: -160, z: -50, radius: 46, shape: "bipyramid", isAccent: false, rotSpeed: { x: 0.005, y: 0.003, z: 0.001 } },
+      { side: "left", relXFactor: 0.39, baseY: -40, z: -110, radius: 64, shape: "oct", isAccent: true, rotSpeed: { x: -0.004, y: -0.004, z: 0.003 } },
+      { side: "left", relXFactor: 0.45, baseY: 80, z: -70, radius: 50, shape: "ico", isAccent: false, rotSpeed: { x: 0.003, y: 0.004, z: -0.003 } },
+      { side: "left", relXFactor: 0.37, baseY: 200, z: -150, radius: 68, shape: "bipyramid", isAccent: true, rotSpeed: { x: 0.004, y: -0.005, z: 0.002 } },
+      { side: "left", relXFactor: 0.47, baseY: 320, z: -90, radius: 48, shape: "oct", isAccent: false, rotSpeed: { x: -0.003, y: 0.003, z: -0.002 } },
+      { side: "left", relXFactor: 0.40, baseY: 430, z: -180, radius: 60, shape: "ico", isAccent: false, rotSpeed: { x: 0.004, y: 0.003, z: 0.003 } },
 
-    // Left secondary Octahedron
-    const leftOct = createOctahedron(80);
-    polyhedra.push({
-      position: { x: -310, y: 150, z: -70 },
-      rotation: { x: 0.4, y: 0.6, z: 0.1 },
-      rotSpeed: { x: 0.0035, y: -0.004, z: 0.0025 },
-      scale: 1,
-      vertices: leftOct.vertices,
-      edges: leftOct.edges,
-      isAccent: false,
-    });
-
-    // Smaller floating polyhedrons
-    const miniPositions = [
-      { x: -230, y: -230, z: -170, isAccent: true },
-      { x: 270, y: 230, z: -140, isAccent: false },
-      { x: -150, y: 290, z: -210, isAccent: false },
-      { x: 390, y: -50, z: -240, isAccent: true },
+      // 3. RIGHT FLANK (Strictly in the right margins of the screen, clear of text)
+      { side: "right", relXFactor: 0.42, baseY: -360, z: -120, radius: 62, shape: "bipyramid", isAccent: true, rotSpeed: { x: -0.004, y: 0.004, z: -0.003 } },
+      { side: "right", relXFactor: 0.46, baseY: -250, z: -60, radius: 50, shape: "oct", isAccent: false, rotSpeed: { x: 0.003, y: -0.004, z: 0.002 } },
+      { side: "right", relXFactor: 0.38, baseY: -130, z: -160, radius: 72, shape: "ico", isAccent: false, rotSpeed: { x: 0.004, y: 0.005, z: -0.001 } },
+      { side: "right", relXFactor: 0.45, baseY: -10, z: -90, radius: 54, shape: "oct", isAccent: true, rotSpeed: { x: -0.003, y: 0.003, z: 0.004 } },
+      { side: "right", relXFactor: 0.38, baseY: 120, z: -130, radius: 66, shape: "bipyramid", isAccent: false, rotSpeed: { x: 0.005, y: -0.004, z: -0.002 } },
+      { side: "right", relXFactor: 0.46, baseY: 230, z: -70, radius: 48, shape: "ico", isAccent: true, rotSpeed: { x: -0.004, y: 0.004, z: 0.003 } },
+      { side: "right", relXFactor: 0.39, baseY: 340, z: -170, radius: 70, shape: "oct", isAccent: false, rotSpeed: { x: 0.003, y: -0.003, z: 0.001 } },
+      { side: "right", relXFactor: 0.44, baseY: 450, z: -100, radius: 52, shape: "bipyramid", isAccent: false, rotSpeed: { x: -0.003, y: 0.004, z: -0.002 } },
     ];
 
-    miniPositions.forEach((p) => {
-      const mini = createOctahedron(44);
-      polyhedra.push({
-        position: { x: p.x, y: p.y, z: p.z },
-        rotation: { x: Math.random() * 3, y: Math.random() * 3, z: 0 },
-        rotSpeed: {
-          x: (Math.random() - 0.5) * 0.005,
-          y: (Math.random() - 0.5) * 0.005,
-          z: (Math.random() - 0.5) * 0.005,
-        },
+    const polyhedra = polyConfigs.map((cfg) => {
+      let geo: { vertices: Point3D[]; edges: [number, number][] };
+      if (cfg.shape === "ico") geo = createIcosahedron(cfg.radius);
+      else if (cfg.shape === "bipyramid") geo = createBipyramid(cfg.radius);
+      else geo = createOctahedron(cfg.radius);
+
+      return {
+        isCenter: cfg.isCenter,
+        side: cfg.side,
+        relXFactor: cfg.relXFactor,
+        baseY: cfg.baseY,
+        z: cfg.z,
+        position: { x: 0, y: cfg.baseY, z: cfg.z },
+        rotation: { x: Math.random() * 3, y: Math.random() * 3, z: Math.random() * 2 },
+        rotSpeed: cfg.rotSpeed,
         scale: 1,
-        vertices: mini.vertices,
-        edges: mini.edges,
-        isAccent: p.isAccent,
-      });
+        vertices: geo.vertices,
+        edges: geo.edges,
+        isAccent: cfg.isAccent,
+      };
     });
 
-    // Lattice background stars
+    // Background lattice points: placed on left and right sides so text area is completely clear
     const latticePoints: Point3D[] = [];
-    for (let i = 0; i < 45; i++) {
+    for (let i = 0; i < 40; i++) {
+      const isLeft = i % 2 === 0;
+      const sideX = isLeft
+        ? -460 - Math.random() * 450
+        : 460 + Math.random() * 450;
       latticePoints.push({
-        x: (Math.random() - 0.5) * 1200,
-        y: (Math.random() - 0.5) * 900,
+        x: sideX,
+        y: (Math.random() - 0.5) * 1100,
         z: -100 - Math.random() * 300,
       });
     }
@@ -241,8 +278,22 @@ export function Structure3D({ className = "" }: Structure3DProps) {
         }
       });
 
+      // Calculate responsive side bounds (safe clearance outside central text corridor)
+      const sideDistance = Math.max(width * 0.38, 480);
+
       // Render 3D Polyhedra structures
       polyhedra.forEach((poly) => {
+        if (poly.isCenter) {
+          poly.position.x = 0;
+          poly.position.y = 0;
+        } else if (poly.side === "left") {
+          poly.position.x = -sideDistance - (poly.relXFactor - 0.35) * width * 0.5;
+          poly.position.y = poly.baseY;
+        } else {
+          poly.position.x = sideDistance + (poly.relXFactor - 0.35) * width * 0.5;
+          poly.position.y = poly.baseY;
+        }
+
         poly.rotation.x += poly.rotSpeed.x;
         poly.rotation.y += poly.rotSpeed.y;
         poly.rotation.z += poly.rotSpeed.z;
