@@ -137,55 +137,62 @@ export default function Page() {
         </div>
       </AnimatedSection>
 
-      {/* ═══════ 2. About & Skills (Combined Section) ═══════ */}
-      <AnimatedSection id="about" animation="fade-up" className="px-4 sm:px-6 lg:px-8 py-8">
-        <div className="max-w-5xl mx-auto w-full p-4 sm:p-6 lg:p-8 rounded-2xl sm:rounded-3xl border border-border/80 bg-background/90 dark:bg-zinc-950/90 backdrop-blur-xl shadow-2xl shadow-black/25 space-y-6">
-          <div className="flex items-center gap-3">
-            <h2 className="text-xl sm:text-2xl font-bold tracking-tight">About &amp; Technical Expertise</h2>
-            <div className="flex-1 h-px bg-border/60" />
+      {/* ═══════ 2. About & Skills (Large, Grand Bento Grid) ═══════ */}
+      <AnimatedSection id="about" animation="fade-up" center={false} className="px-4 sm:px-6 lg:px-8 py-10 sm:py-16">
+        <div className="max-w-7xl mx-auto w-full p-6 sm:p-8 lg:p-10 rounded-2xl sm:rounded-3xl border border-border/80 dark:border-border/60 bg-background/90 dark:bg-zinc-950/90 backdrop-blur-xl shadow-2xl shadow-black/25 space-y-6 sm:space-y-8">
+          <div className="flex items-center gap-3.5">
+            <div className="size-10 sm:size-11 rounded-xl border border-sky-500/30 bg-sky-500/10 text-sky-500 dark:text-sky-400 flex items-center justify-center shrink-0">
+              <Cpu className="size-5 sm:size-6" />
+            </div>
+            <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-foreground">
+              About &amp; Technical Expertise
+            </h2>
+            <div className="flex-1 h-px bg-border/60 ml-2" />
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-5 items-stretch">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
             {/* About Bio Card */}
-            <div className="lg:col-span-5 border border-border/70 dark:border-border/50 rounded-2xl p-5 sm:p-6 bg-card/90 dark:bg-zinc-900/90 shadow-xs flex flex-col justify-between gap-4">
-              <div className="space-y-3">
-                <div className="text-xs font-semibold uppercase tracking-wider text-muted-foreground flex items-center gap-2">
-                  <span className="h-1.5 w-1.5 rounded-full bg-red-500" />
-                  Background &amp; Focus
+            <div className="lg:col-span-5 border border-border/80 dark:border-border/60 rounded-2xl sm:rounded-3xl p-6 sm:p-7 bg-card/90 dark:bg-zinc-950/90 shadow-lg flex flex-col justify-between gap-6 hover:border-sky-500/40 transition-colors">
+              <div className="space-y-4">
+                <div className="text-xs font-mono font-bold tracking-widest text-sky-500 dark:text-sky-400 uppercase flex items-center gap-2">
+                  <span className="h-2 w-2 rounded-full bg-sky-500 shadow-xs shadow-sky-500/50" />
+                  BACKGROUND &amp; FOCUS
                 </div>
-                <div className="text-xs sm:text-sm text-pretty font-sans leading-relaxed text-muted-foreground dark:prose-invert">
+                <div className="text-sm sm:text-base text-pretty font-sans leading-relaxed text-muted-foreground dark:text-zinc-300">
                   <Markdown>{DATA.summary}</Markdown>
                 </div>
               </div>
-              <div className="pt-3 border-t border-border/50 text-xs text-muted-foreground flex flex-col gap-1 font-mono">
+              <div className="pt-4 border-t border-border/50 text-xs sm:text-sm text-muted-foreground flex flex-col gap-1.5 font-mono">
                 <div>Major: Electronics &amp; Communication</div>
                 <div>Minor: Computer Science (Cybersecurity)</div>
-                <div className="text-primary font-semibold">CEG, Anna University &apos;27</div>
+                <div className="text-sky-500 dark:text-sky-400 font-bold pt-0.5">
+                  CEG, Anna University &apos;27
+                </div>
               </div>
             </div>
 
-            {/* Technical Skills Bento Grid */}
-            <div className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+            {/* Technical Skills Bento Grid (2x2 Matrix) */}
+            <div className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
               {SKILL_CATEGORIES.map((category) => {
                 const Icon = category.icon;
                 return (
                   <div
                     key={category.title}
-                    className="border border-border/70 dark:border-border/50 rounded-2xl p-4 bg-card/90 dark:bg-zinc-900/90 shadow-xs flex flex-col justify-between gap-3 hover:border-primary/40 transition-colors"
+                    className="border border-border/80 dark:border-border/60 rounded-2xl sm:rounded-3xl p-5 sm:p-6 bg-card/90 dark:bg-zinc-950/90 shadow-lg flex flex-col justify-between gap-4 hover:border-sky-500/40 transition-all duration-300 group"
                   >
-                    <div className="flex items-center gap-2">
-                      <div className="p-1.5 rounded-lg border border-border/60 bg-muted/60">
-                        <Icon className="size-3.5 text-foreground" />
+                    <div className="flex items-center gap-2.5">
+                      <div className="p-2 rounded-xl border border-sky-500/30 bg-sky-500/10 text-sky-500 dark:text-sky-400">
+                        <Icon className="size-4 text-sky-500 dark:text-sky-400" />
                       </div>
-                      <h3 className="font-semibold text-xs sm:text-sm text-foreground">
+                      <h3 className="font-bold text-sm sm:text-base text-foreground group-hover:text-sky-500 dark:group-hover:text-sky-400 transition-colors">
                         {category.title}
                       </h3>
                     </div>
-                    <div className="flex flex-wrap gap-1">
+                    <div className="flex flex-wrap gap-2 pt-1">
                       {category.skills.map((skill) => (
                         <span
                           key={skill}
-                          className="text-[11px] font-medium border border-border/80 bg-background/90 text-foreground/85 px-2 py-0.5 rounded-md"
+                          className="text-xs font-medium border border-border/80 dark:border-border/60 bg-muted/40 text-foreground/90 px-3 py-1 rounded-full hover:border-sky-500/50 hover:bg-sky-500/10 transition-colors shadow-xs"
                         >
                           {skill}
                         </span>
