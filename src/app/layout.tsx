@@ -8,7 +8,6 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { FlickeringGrid } from "@/components/magicui/flickering-grid";
 import { Structure3D } from "@/components/magicui/structure-3d";
-import { Airplane3D } from "@/components/magicui/airplane-3d";
 import { MouseSpotlight } from "@/components/magicui/mouse-spotlight";
 
 const geist = Geist({
@@ -77,9 +76,6 @@ export default function RootLayout({
           <TooltipProvider delayDuration={0}>
             {/* 3D Geometric Structured Background (Black/White/Red) */}
             <Structure3D />
-
-            {/* 3D Wireframe Airplane Cursor Follower */}
-            <Airplane3D />
 
             {/* Subtle Top Flickering Grid */}
             <div className="absolute inset-0 top-0 left-0 right-0 h-[300px] overflow-hidden z-0 pointer-events-none">

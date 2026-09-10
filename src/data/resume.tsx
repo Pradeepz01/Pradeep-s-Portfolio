@@ -1,5 +1,5 @@
 import { Icons } from "@/components/icons";
-import { HomeIcon, NotebookIcon } from "lucide-react";
+import { HomeIcon, NotebookIcon, Briefcase, FolderGit2 } from "lucide-react";
 import { Python } from "@/components/ui/svgs/python";
 import { Csharp } from "@/components/ui/svgs/csharp";
 
@@ -50,6 +50,8 @@ export const DATA = {
   ],
   navbar: [
     { href: "/", icon: HomeIcon, label: "Home" },
+    { href: "/experience", icon: Briefcase, label: "Experience" },
+    { href: "/#projects", icon: FolderGit2, label: "Projects" },
     { href: "/blog", icon: NotebookIcon, label: "Blog" },
   ],
   contact: {

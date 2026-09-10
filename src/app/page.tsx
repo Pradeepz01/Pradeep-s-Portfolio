@@ -7,9 +7,7 @@ import HackathonsSection from "@/components/section/hackathons-section";
 import ProjectsSection from "@/components/section/projects-section";
 import WorkSection from "@/components/section/work-section";
 import AnimatedSection from "@/components/animated-section";
-import { ArrowUpRight, Cpu, Binary, Layers, Wrench, FileText, Mail } from "lucide-react";
-import { Icons } from "@/components/icons";
-import { HyperText } from "@/components/magicui/hyper-text";
+import { ArrowUpRight, Cpu, Binary, Layers, Wrench, Mail } from "lucide-react";
 
 const SKILL_CATEGORIES = [
   {
@@ -77,81 +75,63 @@ const SKILL_CATEGORIES = [
 export default function Page() {
   return (
     <main className="h-dvh overflow-y-scroll snap-y snap-mandatory scroll-smooth">
-      {/* ═══════ 1. Hero (Seamless background merge) ═══════ */}
-      <AnimatedSection id="hero" animation="fade-scale" className="px-4 sm:px-6 lg:px-8">
+      {/* ═══════ 1. Hero (Matches Image 2 reference layout & text) ═══════ */}
+      <AnimatedSection id="hero" animation="fade-scale" className="px-4 sm:px-6 lg:px-8 min-h-dvh flex flex-col justify-center pt-24 pb-12">
         <div className="max-w-4xl mx-auto w-full space-y-6">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-emerald-500/30 bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 text-xs font-semibold tracking-wide shadow-xs">
-            <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
-            </span>
-            Available for Embedded Systems &amp; Firmware Roles
-          </div>
-
-          <div className="space-y-3">
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-foreground flex flex-wrap items-center gap-x-3 gap-y-1">
-              <span>Hi, I&apos;m</span>
-              <HyperText
-                text="Pradeep S"
-                className="bg-gradient-to-r from-sky-400 via-blue-500 to-indigo-500 bg-clip-text text-transparent"
-              />
+          <div className="space-y-4">
+            <h1 className="text-4xl sm:text-6xl md:text-7xl font-extrabold tracking-tight text-foreground">
+              Hi, I&apos;m{" "}
+              <span className="text-sky-500 dark:text-sky-400">
+                Pradeep S
+              </span>
             </h1>
 
-            <p className="text-lg sm:text-xl font-medium text-foreground/80">
+            <p className="text-xl sm:text-2xl md:text-3xl font-bold text-foreground/90 tracking-tight leading-snug">
               Embedded Systems, Firmware &amp; RTL Design Engineer
             </p>
 
-            <p className="text-sm sm:text-base text-muted-foreground max-w-2xl leading-relaxed">
-              ECE (Major) &amp; CSE (Minor) @ CEG&apos;27, Anna University, Chennai. Specializing in ARM Cortex-M4 bare-metal firmware, peripheral drivers (UART, SPI, I²C), RISC-V RV32I architecture, and Tiny Tapeout Sky130 ASIC tapeouts.
+            <p className="text-sm sm:text-base md:text-lg font-semibold text-foreground/80">
+              ECE (Major) &amp; CSE (Minor) @ CEG&apos;27, Anna University, Chennai.
             </p>
+
+            <p className="text-xs sm:text-sm md:text-base text-muted-foreground max-w-2xl leading-relaxed">
+              Passionate about building reliable systems from silicon to software.
+            </p>
+          </div>
+
+          {/* Badges Row */}
+          <div className="flex flex-wrap items-center gap-2 sm:gap-2.5 pt-1">
+            {["ARM CORTEX-M", "RISC-V", "BARE-METAL", "FPGA", "ASIC"].map((badge) => (
+              <span
+                key={badge}
+                className="px-3 sm:px-4 py-1 rounded-full text-xs font-semibold tracking-wider uppercase border border-sky-500/40 text-sky-600 dark:text-sky-400 bg-sky-500/10 shadow-xs"
+              >
+                {badge}
+              </span>
+            ))}
           </div>
 
           {/* Call to Action Buttons */}
           <div className="flex flex-wrap items-center gap-3 pt-2">
             <a
-              href="/Pradeep_Resume.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-primary text-primary-foreground font-medium text-sm shadow-md hover:bg-primary/90 transition-all active:scale-95"
+              href="#projects"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-sky-500 hover:bg-sky-600 text-white font-semibold text-sm shadow-md transition-all active:scale-95"
             >
-              <FileText className="size-4" />
-              View / Download Resume
+              View My Projects
+              <span aria-hidden="true">&rarr;</span>
             </a>
             <a
-              href="mailto:pradeepsaravana01@gmail.com"
-              className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl border border-border bg-card hover:bg-accent text-foreground font-medium text-sm transition-all active:scale-95 shadow-xs"
+              href="#contact"
+              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl border border-sky-500/40 hover:border-sky-500 bg-card/80 hover:bg-accent text-foreground font-semibold text-sm transition-all active:scale-95 shadow-xs"
             >
-              <Mail className="size-4" />
               Get in Touch
+              <Mail className="size-4 text-sky-500" />
             </a>
-            <div className="h-6 w-px bg-border mx-1 hidden sm:block" />
-            <a
-              href="https://github.com/Pradeepz01"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="p-2.5 rounded-xl border border-border bg-card hover:bg-accent text-muted-foreground hover:text-foreground transition-all shadow-xs"
-              aria-label="GitHub Profile"
-            >
-              <Icons.github className="size-4" />
-            </a>
-            <a
-              href="https://www.linkedin.com/in/pradeep-s06/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="p-2.5 rounded-xl border border-border bg-card hover:bg-accent text-muted-foreground hover:text-foreground transition-all shadow-xs"
-              aria-label="LinkedIn Profile"
-            >
-              <Icons.linkedin className="size-4" />
-            </a>
-            <a
-              href="https://leetcode.com/u/saltlee/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="p-2.5 rounded-xl border border-border bg-card hover:bg-accent text-muted-foreground hover:text-foreground transition-all shadow-xs"
-              aria-label="LeetCode Profile"
-            >
-              <Icons.leetcode className="size-4" />
-            </a>
+          </div>
+
+          {/* Scroll Indicator */}
+          <div className="pt-6 flex items-center gap-2 text-xs font-mono tracking-widest text-sky-600 dark:text-sky-400/80 uppercase">
+            <span className="text-sm font-sans">&darr;</span> SCROLL TO EXPLORE
           </div>
         </div>
       </AnimatedSection>
@@ -218,9 +198,9 @@ export default function Page() {
         </div>
       </AnimatedSection>
 
-      {/* ═══════ 3. Featured Projects (Horizontal Landscape Cards) ═══════ */}
+      {/* ═══════ 3. Featured Projects (2x2 Matrix) ═══════ */}
       <AnimatedSection id="projects" animation="fade-scale" className="px-4 sm:px-6 lg:px-8 py-8">
-        <div className="max-w-5xl mx-auto w-full">
+        <div className="max-w-6xl mx-auto w-full">
           <ProjectsSection />
         </div>
       </AnimatedSection>
@@ -228,9 +208,15 @@ export default function Page() {
       {/* ═══════ 4. Experience & Education (Combined Section) ═══════ */}
       <AnimatedSection id="work" animation="slide-left" className="px-4 sm:px-6 lg:px-8 py-8">
         <div className="max-w-5xl mx-auto w-full p-4 sm:p-6 lg:p-8 rounded-2xl sm:rounded-3xl border border-border/80 bg-background/90 dark:bg-zinc-950/90 backdrop-blur-xl shadow-2xl shadow-black/25 space-y-6">
-          <div className="flex items-center gap-3">
+          <div className="flex items-center justify-between gap-3">
             <h2 className="text-xl sm:text-2xl font-bold tracking-tight">Experience &amp; Education</h2>
-            <div className="flex-1 h-px bg-border/60" />
+            <div className="flex-1 h-px bg-border/60 hidden sm:block" />
+            <Link
+              href="/experience"
+              className="inline-flex items-center gap-1 text-xs sm:text-sm font-semibold text-sky-500 hover:text-sky-600 dark:hover:text-sky-400 hover:underline shrink-0"
+            >
+              Full Experience Page &rarr;
+            </Link>
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
