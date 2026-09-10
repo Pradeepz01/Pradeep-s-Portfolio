@@ -1,109 +1,86 @@
 /* eslint-disable @next/next/no-img-element */
-"use client";
-import { useState } from "react";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
 import { DATA } from "@/data/resume";
-import { ChevronDown, ChevronRight } from "lucide-react";
-import { cn } from "@/lib/utils";
-
-function LogoImage({ src, alt }: { src: string; alt: string }) {
-  const [imageError, setImageError] = useState(false);
-
-  if (!src || imageError) {
-    return (
-      <div className="size-10 md:size-12 p-1.5 border rounded-xl shadow-xs ring-1 ring-border/50 bg-muted flex items-center justify-center flex-none font-bold text-xs text-muted-foreground">
-        {alt.slice(0, 2).toUpperCase()}
-      </div>
-    );
-  }
-
-  return (
-    <div className="size-10 md:size-12 p-1.5 border border-border/60 rounded-xl bg-white shadow-xs ring-1 ring-border/40 overflow-hidden flex items-center justify-center flex-none">
-      <img
-        src={src}
-        alt={alt}
-        className="max-h-full max-w-full object-contain"
-        onError={() => setImageError(true)}
-      />
-    </div>
-  );
-}
+import Link from "next/link";
+import { Briefcase } from "lucide-react";
 
 export default function WorkSection() {
   return (
-    <Accordion type="single" collapsible className="w-full flex flex-col gap-3.5">
+    <div className="flex flex-col gap-5 sm:gap-6 w-full">
       {DATA.work.map((work) => (
-        <AccordionItem
+        <div
           key={work.company}
-          value={work.company}
-          className="w-full border border-border/70 bg-card/90 dark:bg-zinc-900/90 hover:border-primary/40 transition-all rounded-2xl p-4 shadow-xs"
+          className="border border-border/80 dark:border-border/60 rounded-2xl sm:rounded-3xl bg-card/90 dark:bg-zinc-950/90 backdrop-blur-xl p-5 sm:p-7 shadow-xl shadow-black/10 hover:border-sky-500/40 transition-all duration-300 group"
         >
-          <AccordionTrigger className="hover:no-underline p-0 cursor-pointer transition-colors rounded-none group [&>svg]:hidden">
-            <div className="flex items-center gap-x-3 justify-between w-full text-left">
-              <div className="flex items-center gap-x-3 flex-1 min-w-0">
-                <LogoImage src={work.logoUrl} alt={work.company} />
-                <div className="flex-1 min-w-0 gap-0.5 flex flex-col">
-                  <div className="font-semibold leading-none flex items-center gap-2 flex-wrap">
-                    <span>{work.company}</span>
-                    <span className="text-[10px] font-mono font-medium px-2 py-0.5 rounded-md bg-sky-500/10 dark:bg-sky-400/10 text-sky-600 dark:text-sky-400 border border-sky-500/20 group-data-[state=open]:hidden inline-flex items-center gap-1">
-                      Click to view &darr;
+          {/* Card Top: Logo, Company, Title, Badge, Dates */}
+          <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4">
+            <div className="flex items-start gap-3.5 sm:gap-4">
+              <div className="size-12 sm:size-14 rounded-2xl border border-border/80 bg-white dark:bg-zinc-900 p-2 flex items-center justify-center shrink-0 shadow-xs">
+                {work.logoUrl ? (
+                  <img
+                    src={work.logoUrl}
+                    alt={work.company}
+                    className="size-full object-contain rounded-lg"
+                  />
+                ) : (
+                  <Briefcase className="size-6 text-muted-foreground" />
+                )}
+              </div>
+              <div className="space-y-1">
+                <div className="flex flex-wrap items-center gap-2">
+                  <h3 className="text-base sm:text-lg font-bold text-foreground group-hover:text-sky-500 dark:group-hover:text-sky-400 transition-colors">
+                    {work.company}
+                  </h3>
+                  {work.badges?.map((badge) => (
+                    <span
+                      key={badge}
+                      className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-sky-500/10 text-sky-600 dark:text-sky-400 border border-sky-500/30"
+                    >
+                      {badge}
                     </span>
-                    <span className="text-[10px] font-mono font-medium px-2 py-0.5 rounded-md bg-muted text-muted-foreground border border-border/60 group-data-[state=closed]:hidden inline-flex items-center gap-1">
-                      Click to close &uarr;
-                    </span>
-                    <span className="relative inline-flex items-center w-3.5 h-3.5">
-                      <ChevronRight
-                        className={cn(
-                          "absolute h-3.5 w-3.5 shrink-0 text-muted-foreground stroke-2 transition-all duration-300 ease-out",
-                          "translate-x-0 opacity-0",
-                          "group-hover:translate-x-1 group-hover:opacity-100",
-                          "group-data-[state=open]:opacity-0 group-data-[state=open]:translate-x-0"
-                        )}
-                      />
-                      <ChevronDown
-                        className={cn(
-                          "absolute h-3.5 w-3.5 shrink-0 text-muted-foreground stroke-2 transition-all duration-200",
-                          "opacity-0 rotate-0",
-                          "group-data-[state=open]:opacity-100 group-data-[state=open]:rotate-180"
-                        )}
-                      />
-                    </span>
-                  </div>
-                  <div className="font-sans text-sm text-muted-foreground">
-                    {work.title}
-                  </div>
+                  ))}
                 </div>
-              </div>
-              <div className="flex items-center gap-1 text-xs tabular-nums text-muted-foreground text-right flex-none">
-                <span>
-                  {work.start} - {work.end ?? "Present"}
-                </span>
+                <p className="text-xs sm:text-sm font-medium text-muted-foreground">
+                  {work.title}
+                </p>
               </div>
             </div>
-          </AccordionTrigger>
-          <AccordionContent className="p-0 ml-0 sm:ml-13 pt-2 text-xs sm:text-sm text-muted-foreground flex flex-col gap-3">
-            <div className="whitespace-pre-line leading-relaxed space-y-2">
-              {work.description}
+
+            {/* Dates & Location */}
+            <div className="sm:text-right shrink-0 font-mono text-xs sm:text-sm pl-15 sm:pl-0">
+              <div className="font-semibold text-sky-600 dark:text-sky-400">
+                {work.start} – {work.end ?? "Present"}
+              </div>
+              <div className="text-muted-foreground text-xs pt-0.5">
+                {work.location}
+              </div>
             </div>
-            {work.href && (
-              <a
+          </div>
+
+          {/* Full description paragraphs directly displayed */}
+          <div className="mt-4 pt-4 border-t border-border/50 text-xs sm:text-sm text-muted-foreground leading-relaxed space-y-2.5">
+            {work.description.split("\n\n").map((paragraph, idx) => (
+              <p key={idx} className="text-pretty">
+                {paragraph}
+              </p>
+            ))}
+          </div>
+
+          {/* Action Link: View Repository / Details */}
+          {work.href && (
+            <div className="mt-4 pt-2">
+              <Link
                 href={work.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-primary text-xs inline-flex items-center gap-1 hover:underline w-fit font-medium"
+                className="inline-flex items-center gap-1.5 text-xs sm:text-sm font-semibold text-sky-500 dark:text-sky-400 hover:text-sky-600 dark:hover:text-sky-300 hover:underline transition-colors"
               >
-                View Repository / Details &rarr;
-              </a>
-            )}
-          </AccordionContent>
-        </AccordionItem>
+                View Repository / Details
+                <span aria-hidden="true">&rarr;</span>
+              </Link>
+            </div>
+          )}
+        </div>
       ))}
-    </Accordion>
+    </div>
   );
 }
-

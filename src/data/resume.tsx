@@ -1,5 +1,5 @@
 import { Icons } from "@/components/icons";
-import { HomeIcon, NotebookIcon, Briefcase, FolderGit2 } from "lucide-react";
+import { HomeIcon, NotebookIcon, Briefcase, GraduationCap, FolderGit2 } from "lucide-react";
 import { Python } from "@/components/ui/svgs/python";
 import { Csharp } from "@/components/ui/svgs/csharp";
 
@@ -49,8 +49,9 @@ export const DATA = {
     { name: "VS Code" },
   ],
   navbar: [
-    { href: "/", icon: HomeIcon, label: "Home" },
-    { href: "/experience", icon: Briefcase, label: "Experience" },
+    { href: "/#hero", icon: HomeIcon, label: "Home" },
+    { href: "/#experience", icon: Briefcase, label: "Experience" },
+    { href: "/#education", icon: GraduationCap, label: "Education" },
     { href: "/#projects", icon: FolderGit2, label: "Projects" },
     { href: "/blog", icon: NotebookIcon, label: "Blog" },
   ],

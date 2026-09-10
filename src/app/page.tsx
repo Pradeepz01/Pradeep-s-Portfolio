@@ -6,8 +6,9 @@ import ContactSection from "@/components/section/contact-section";
 import HackathonsSection from "@/components/section/hackathons-section";
 import ProjectsSection from "@/components/section/projects-section";
 import WorkSection from "@/components/section/work-section";
+import EducationSection from "@/components/section/education-section";
 import AnimatedSection from "@/components/animated-section";
-import { ArrowUpRight, Cpu, Binary, Layers, Wrench, Mail } from "lucide-react";
+import { ArrowUpRight, Cpu, Binary, Layers, Wrench, Mail, Briefcase, GraduationCap } from "lucide-react";
 
 const SKILL_CATEGORIES = [
   {
@@ -205,81 +206,31 @@ export default function Page() {
         </div>
       </AnimatedSection>
 
-      {/* ═══════ 4. Experience & Education (Combined Section) ═══════ */}
-      <AnimatedSection id="work" animation="slide-left" className="px-4 sm:px-6 lg:px-8 py-8">
-        <div className="max-w-5xl mx-auto w-full p-4 sm:p-6 lg:p-8 rounded-2xl sm:rounded-3xl border border-border/80 bg-background/90 dark:bg-zinc-950/90 backdrop-blur-xl shadow-2xl shadow-black/25 space-y-6">
-          <div className="flex items-center justify-between gap-3">
-            <h2 className="text-xl sm:text-2xl font-bold tracking-tight">Experience &amp; Education</h2>
-            <div className="flex-1 h-px bg-border/60 hidden sm:block" />
-            <Link
-              href="/experience"
-              className="inline-flex items-center gap-1 text-xs sm:text-sm font-semibold text-sky-500 hover:text-sky-600 dark:hover:text-sky-400 hover:underline shrink-0"
-            >
-              Full Experience Page &rarr;
-            </Link>
-          </div>
-
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
-            {/* Work Experience Column */}
-            <div className="lg:col-span-7 flex flex-col gap-3">
-              <h3 className="h-6 flex items-center justify-between text-xs font-semibold uppercase tracking-wider text-muted-foreground">
-                <span className="flex items-center gap-2">
-                  <span className="h-1.5 w-1.5 rounded-full bg-red-500" />
-                  Work Experience &amp; Internships
-                </span>
-                <span className="text-[11px] font-normal normal-case font-mono text-muted-foreground/80">
-                  (Click to view details)
-                </span>
-              </h3>
-              <WorkSection />
+      {/* ═══════ 4. Work Experience & Internships (Full Template Cards) ═══════ */}
+      <AnimatedSection id="experience" animation="slide-left" center={false} className="px-4 sm:px-6 lg:px-8 py-10 sm:py-14">
+        <div className="max-w-5xl mx-auto w-full space-y-6">
+          <div className="flex items-center gap-3">
+            <div className="size-9 rounded-xl border border-sky-500/30 bg-sky-500/10 text-sky-500 flex items-center justify-center shrink-0">
+              <Briefcase className="size-5" />
             </div>
-
-            {/* Education Column */}
-            <div className="lg:col-span-5 flex flex-col gap-3">
-              <h3 className="h-6 flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-muted-foreground">
-                <span className="h-1.5 w-1.5 rounded-full bg-red-500" />
-                Education &amp; Academics
-              </h3>
-              {/* Internal container box */}
-              <div className="rounded-2xl border border-border/80 bg-muted/30 dark:bg-zinc-900/40 p-3 sm:p-4 flex flex-col gap-3 shadow-inner">
-                {DATA.education.map((education) => (
-                  <Link
-                    key={education.school}
-                    href={education.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-3.5 group p-3.5 rounded-xl border border-border/70 bg-card/95 dark:bg-zinc-900/95 hover:border-primary/50 hover:bg-card transition-all shadow-xs"
-                  >
-                    {education.logoUrl ? (
-                      <div className="size-11 p-1.5 border border-border/60 rounded-xl bg-white shadow-xs overflow-hidden flex items-center justify-center flex-none">
-                        <img
-                          src={education.logoUrl}
-                          alt={education.school}
-                          className="max-h-full max-w-full object-contain"
-                        />
-                      </div>
-                    ) : (
-                      <div className="size-11 p-1.5 border border-border/60 rounded-xl shadow-xs bg-muted flex items-center justify-center flex-none font-bold text-xs text-muted-foreground">
-                        {education.school.slice(0, 2).toUpperCase()}
-                      </div>
-                    )}
-                    <div className="flex-1 min-w-0 flex flex-col gap-0.5">
-                      <div className="font-semibold text-xs sm:text-sm leading-tight flex items-center gap-1.5 group-hover:text-primary transition-colors">
-                        <span className="truncate">{education.school}</span>
-                        <ArrowUpRight className="h-3.5 w-3.5 text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity flex-none" />
-                      </div>
-                      <div className="text-xs text-muted-foreground leading-snug">
-                        {education.degree}
-                      </div>
-                      <div className="text-[11px] font-mono text-muted-foreground/80 pt-0.5">
-                        {education.start} – {education.end}
-                      </div>
-                    </div>
-                  </Link>
-                ))}
-              </div>
-            </div>
+            <h2 className="text-xl sm:text-2xl font-bold tracking-tight">Work Experience &amp; Internships</h2>
+            <div className="flex-1 h-px bg-border/60" />
           </div>
+          <WorkSection />
+        </div>
+      </AnimatedSection>
+
+      {/* ═══════ 5. Education & Academics (Side-by-Side Cards) ═══════ */}
+      <AnimatedSection id="education" animation="slide-right" center={false} className="px-4 sm:px-6 lg:px-8 py-10 sm:py-14">
+        <div className="max-w-5xl mx-auto w-full space-y-6">
+          <div className="flex items-center gap-3">
+            <div className="size-9 rounded-xl border border-sky-500/30 bg-sky-500/10 text-sky-500 flex items-center justify-center shrink-0">
+              <GraduationCap className="size-5" />
+            </div>
+            <h2 className="text-xl sm:text-2xl font-bold tracking-tight">Education &amp; Academics</h2>
+            <div className="flex-1 h-px bg-border/60" />
+          </div>
+          <EducationSection />
         </div>
       </AnimatedSection>
 
